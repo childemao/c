@@ -1,0 +1,109 @@
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <malloc.h>
+//#include <windows.h>
+//int main()
+//{	
+//	int a, b, c, d, e;
+//	int num = 0;	
+//	for (a = 1; a <= 5; a++)	
+//	{
+//		for (b = 1; b <= 5; b++)	
+//		{			
+//			for (c = 1; c <= 5; c++)		
+//			{			
+//				for (d = 1; d <= 5; d++)
+//				{				
+//					for (e = 1; e <= 5; e++)			
+//					{	
+//						if (((b == 1) + (a == 3) == 1)	
+//							&& ((b == 2) + (e == 4) == 1)	
+//							&& ((c == 1) + (d == 2) == 1)					
+//							&& ((c == 5) + (d == 3) == 1)	
+//							&& ((e == 4) + (a == 1) == 1))
+//						{					
+//							num = 0;		
+//							num |= (1 << (a - 1));//a=3				
+//							num |= (1 << (b - 1));	
+//							num |= (1 << (c - 1));		
+//							num |= (1 << (d - 1));
+//							num |= (1 << (e - 1));	
+//							while (num)  //有可能有并列，但是绝不可能有第一名第三名，没有第二名	
+//							{								
+//								if (num % 2 == 0)									
+//									break;			
+//								num = num / 2;				
+//							}							
+//							if (num == 0)	
+//							{							
+//								printf("a=%d b=%d c=%d d=%d e=%d\n", a, b, c, d, e);
+//							}	
+//						}				
+//					}		
+//				}	
+//			}	
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//#include<stdio.h>
+//#include<stdlib.h>
+//
+//int count_one_bits(unsigned int value)
+//{
+//	int count = 0;
+//	int a = 1;
+//	int j = 32;
+//	while (j)
+//	{
+//		if ((value & a) == 1)
+//		{
+//			count++;
+//		}
+//		value=value>>1;
+//		j--;
+//	}
+//	return count;
+//}
+//
+//int main()
+//{
+//	int num = 11;
+//	int ret = count_one_bits(num);
+//	printf("ret=%d", ret);
+//	system("pause");
+//	return 0;
+//}
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int count_one_bits(unsigned int value)
+{
+	int count = 0;
+	int a = 1;
+	int j = 32;
+	while (j)
+	{
+		if ((value & a) == 1)
+		{
+			count++;
+		}
+		a=a << 1;
+		j--;
+	}
+	return count;
+}
+
+int main()
+{
+	int num = -1;
+	int ret = count_one_bits(num);
+	printf("ret=%d", ret);
+	system("pause");
+	return 0;
+}
