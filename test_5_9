@@ -1,0 +1,862 @@
+#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//void BubbleSort(int A[], int s, int m)
+//{
+//	int i, j, k;
+//	for (j = s; j < m + s - 1; j++)
+//	{
+//		for (i = s; i < m + s - 1; i++)
+//		{
+//			if (A[i] < A[i + 1])
+//			{
+//				k = A[i];
+//				A[i] = A[i + 1];
+//				A[i + 1] = k;
+//			}
+//		}
+//	}
+//}
+//int main()
+//{
+//	int a, b, c, A[100], d;
+//	scanf("%d", &c);
+//	for (d = 0; d < c; d++)
+//		scanf("%d", &A[d]);
+//	scanf("%d%d", &a, &b);
+//	BubbleSort(A, a, b);
+//	for (d = 0; d < c; d++)
+//		printf("%d ", A[d]);
+//	return 0;
+//}
+
+
+
+
+
+//#include <stdio.h>
+//
+//int nixu(int n)
+//{
+//	if (n > 10) {
+//		printf("%d", n % 10);
+//		nixu(n / 10);
+//	}
+//	else {
+//		printf("%d", n);
+//		return 0;
+//	}
+//}
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	nixu(n);
+//	return 0;
+//}
+//
+
+
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int main()
+//{
+//	int n, i, j, k = 0, t, A[100];
+//	scanf("%d", &n);
+//	for (i = 0; i < n; i++)
+//		scanf("%d", &A[i]);
+//	for (i = 0; i < n; i++)
+//	{
+//		for (j = 0; j < n; j++)
+//			if (A[j] > A[j + 1])
+//			{
+//				t = A[j];
+//				A[j] = A[j + 1];
+//				A[j + 1] = t;
+//				k++;
+//			}
+//	}
+//	printf("%d", k);
+//	return 0;
+//}
+
+
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main()
+//{
+//	int a, b, c, n, m, d;
+//	a = 799;
+//	d = 1;
+//	m = 0;
+//	n = 0;
+//	while (a > 500 && a < 800) {
+//		c = 0;
+//		b = a - 1;
+//		while (b > 1) {
+//			if (a % b == 0) c = c + 1;
+//			b = b - 1;
+//		};
+//		if (c == 0) {
+//			n = 1 + n;
+//			m = m + d * a;
+//			d = -1 * d;
+//		};
+//		a = a - 1;
+//	}
+//	printf("%d %d", n, m);
+//	return 0;
+//}
+
+
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//char b[1000];
+//void deletechar(char s[], char a)
+//{
+//	int n, i, j = 0, k;
+//	n = strlen(s);
+//	for (i = 0; i < n; i++) {
+//		if (s[i] != a) b[j] = s[i], j++;
+//		else {
+//			for (k = 0;; k++) if (s[i + k] != a) break;
+//			b[j] = s[i + k];
+//			i = i + k;
+//			j++;
+//		}
+//	}
+//}
+//int main()
+//{
+//	char s[1000], a;
+//	int i, n;
+//	gets(s);
+//	n = strlen(s);
+//	scanf("%c", &a);
+//	deletechar(s, a);
+//	for (i = 0; i < n; i++)
+//		printf("%c", b[i]);
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int main()
+//{
+//	int y, m, d, days, i, sum = 0;
+//	scanf("%d-%d-%d", &y, &m, &d);
+//	for (i = 1; i < m; i++) {
+//		switch (i) {
+//		case 2:
+//			days = 28;
+//			if ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0))days++;
+//			break;
+//		case 4:case 6:case 9:case 11:days = 30; break;
+//		default:days = 31;
+//
+//		}
+//		sum += days;
+//	}
+//	sum = sum + d;
+//	printf("%d\n", sum);
+//	return 0;
+//}
+
+
+
+//#include <stdio.h>
+//
+//int main()
+//{
+//	int n, a, b, c, d, m;
+//	scanf("%d", &n);
+//	a = n % 10;
+//	b = (n / 10) % 10;
+//	c = (n / 100) % 10;
+//	d = n / 1000;
+//	a = (a + 5) % 10;
+//	b = (b + 5) % 10;
+//	c = (c + 5) % 10;
+//	d = (d + 5) % 10;
+//	m = 1000 * a + 100 * b + 10 * c + d;
+//	printf("%d", m);
+//	return 0;
+//}
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int main()
+//{
+//	int a, b, c, d, n;
+//	scanf("%d%d", &a, &b);
+//	if (b > a) {
+//		c = a;
+//		a = b;
+//		b = c;
+//	};
+//	n = b + 1;
+//	while (n > b && n < a) {
+//		d = n - 1;
+//		int e = 0;
+//		while (d > 1) {
+//			if ((n % d) == 0)
+//				e = e + 1;
+//			d = d - 1;
+//		};
+//		if (e == 0) printf("%d ", n);
+//		n = n + 1;
+//	};
+//	return 0;
+//}
+
+
+
+//#include<stdio.h>
+//#include<math.h>
+//int main()
+//{
+//	int n, s, j = 0, w, h, k, u = 0, c = 0;
+//	scanf("%d", &n);
+//	for (k = u;; k++) {
+//		for (s = k * 100, h = 1; s <= k * 100 + 99; s++) {
+//			for (j = 2, w = 1; j <= sqrt(s); j++) {
+//				w = s % j;
+//				if (w == 0) break;
+//			}
+//			if (w != 0)
+//			{
+//				h = 0;
+//				break;
+//			}
+//		}
+//		if (h == 1)
+//		{
+//			c = c + 1;
+//			if (c == n) {
+//				u = k;
+//				break;
+//			}
+//		};
+//	}
+//
+//	printf("%d %d\n", u * 100, u * 100 + 99);
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//#include <string.h>
+//void paixu(char s[], int n)
+//{
+//	int i, t, k;
+//	for (i = 1; i < n; i++) {
+//		t = s[i]; k = i - 1;
+//		while (t > s[k]) {
+//			s[k + 1] = s[k]; k--;
+//			if (k == -1)break;
+//		}
+//		s[k + 1] = t;
+//	}
+//}
+//void paixu2(char s[], int n)
+//{
+//	int i, t, k;
+//	for (i = n + 1; i < 2 * n; i++) {
+//		t = s[i]; k = i - 1;
+//		while (t < s[k]) {
+//			s[k + 1] = s[k]; k--;
+//			if (k == n - 1)break;
+//		}
+//		s[k + 1] = t;
+//	}
+//}
+//int main()
+//{
+//	char s[100], a;
+//	int n, i, k;
+//	gets(s);
+//	n = strlen(s);
+//	if (n % 2 == 0) {
+//		n = n / 2;
+//		paixu(s, n);
+//		paixu2(s, n);
+//		for (i = n; i < 2 * n; i++)
+//			printf("%c", s[i]);
+//		for (i = 0; i < n; i++)
+//			printf("%c", s[i]);
+//	}
+//	else {
+//		k = (n - 1) / 2;
+//		a = s[k];
+//		for (i = k; i < n - 1; i++)
+//			s[i] = s[i + 1];
+//		n = k;
+//		paixu(s, n);
+//		paixu2(s, n);
+//		for (i = n; i < 2 * n; i++)
+//			printf("%c", s[i]);
+//		printf("%c", a);
+//		for (i = 0; i < n; i++)
+//			printf("%c", s[i]);
+//
+//	}
+//	return 0;
+//}
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <math.h>
+//
+//int main()
+//{
+//	int m, n, x = 1, y, i, j, a, b, c;
+//	double s = 0, g = 0;
+//	scanf("%d%d", &m, &n);
+//	for (b = 1; b < n; b++)
+//	{
+//		x = x * 10;
+//	}
+//	y = 10 * x;
+//	for (i = x; i < y; i++)
+//	{
+//		if (i % m == 0)
+//			continue;
+//		for (j = 0; j < n; j++)
+//		{
+//			int k = 1;
+//			for (c = 1; c <= j; c++)
+//			{
+//				k = k * 10;
+//			}
+//			a = (i / k) % 10;
+//			if (a == m)
+//				goto love;
+//		}
+//		continue;
+//	love:
+//		{s = s + i;
+//		g++; }
+//	}
+//	printf("%.0lf %.0lf", g, s);
+//	return 0;
+//}
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <math.h>
+//
+//int main()
+//{
+//	int i, j;
+//	for (i = 1; i <= 1000; i++)
+//	{
+//		int F[1000], m = 0, n, a, X = 0;
+//		for (j = 1; j < i; j++)
+//		{
+//			if (i % j == 0)
+//			{
+//				m = m + 1;
+//				F[m] = j;
+//			}
+//		}
+//		for (n = 1; n <= m; n++)
+//			X = X + F[n];
+//		if (X == i)
+//		{
+//			printf("%d=", i);
+//			for (a = 1; a < m; a++)
+//				printf("%d+", F[a]);
+//			printf("%d\n", F[m]);
+//		}
+//	}
+//	return 0;
+//}
+
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//void BubbleSort(int A[], int s, int m)
+//{
+//	int i, j, k;
+//	for (j = s; j < m + s - 1; j++)
+//	{
+//		for (i = s; i < m + s - 1; i++)
+//		{
+//			if (A[i] < A[i + 1])
+//			{
+//				k = A[i];
+//				A[i] = A[i + 1];
+//				A[i + 1] = k;
+//			}
+//		}
+//	}
+//}
+//int main()
+//{
+//	int n, A[100], B[100], i, x = 0, y = 0;
+//	scanf("%d", &n);
+//	for (i = 0; i < n; i++)
+//		scanf("%d", &A[i]);
+//	for (i = 0; i < n; i++)
+//		scanf("%d", &B[i]);
+//	BubbleSort(A, 0, n);
+//	BubbleSort(B, 0, n);
+//	for (i = 0; i < n; i++)
+//	{
+//		if (A[i] > B[i])
+//			x += 2;
+//		if (A[i] == B[i])
+//			x++, y++;
+//		if (A[i] < B[i])
+//			y += 2;
+//	}
+//	if (x > y) {
+//		printf("A");
+//		return 0;
+//	}
+//	if (x == y) {
+//		printf("=");
+//		return 0;
+//	}
+//	if (x < y) {
+//		printf("B");
+//		return 0;
+//	}
+//	return 0;
+//}
+
+
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//int main()
+//{
+//	char a[100][1000], b[100][1000];
+//	FILE* p1, * p2;
+//	int i = 0, j = 0, n;
+//	p1 = fopen("DATA5613.TXT", "r");
+//	p2 = fopen("DATA5613.CPP", "rb");
+//	while (!feof(p1)) {
+//		if (fgets(a[i], 99, p1) == NULL)continue;
+//		i++;
+//	}
+//	i = 0;
+//	while (!feof(p2)) {
+//		if (fgets(b[i], 99, p2) == NULL)continue;
+//		i++;
+//	}
+//	n = i;
+//	for (i = 0; i < n; i++)
+//		for (j = 0; j < strlen(a[i]) - 1; j++) if (a[i][j] != b[i][j]) {
+//			printf("%d %d\n", i + 1, j + 1);
+//			break;
+//		};
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//#include <string.h>
+//int main()
+//{
+//	char a[80], b[80], c[80];
+//	int i, d = 0, x = 0, s = 0, k = 0, q = 0, n;
+//	gets(a);
+//	gets(b);
+//	gets(c);
+//	n = strlen(a);
+//	for (i = 0; i < n; i++)
+//		if (a[i] < 91 && a[i]>64) d++;
+//		else if (a[i] > 96 && a[i] < 123) x++;
+//		else if (a[i] > 47 && a[i] < 58) s++;
+//		else if (a[i] == 32) k++;
+//		else q++;
+//	n = strlen(b);
+//	for (i = 0; i < n; i++)
+//		if (b[i] < 91 && b[i]>64) d++;
+//		else if (b[i] > 96 && b[i] < 123) x++;
+//		else if (b[i] > 47 && b[i] < 58) s++;
+//		else if (b[i] == 32) k++;
+//		else q++;
+//	n = strlen(c);
+//	for (i = 0; i < n; i++)
+//		if (c[i] < 91 && c[i]>64) d++;
+//		else if (c[i] > 96 && c[i] < 123) x++;
+//		else if (c[i] > 47 && c[i] < 58) s++;
+//		else if (c[i] == 32) k++;
+//		else q++;
+//	printf("%d %d %d %d %d", d, x, s, k, q);
+//	return 0;
+//}
+
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int main()
+//{
+//	int a, i, n, f1, f2, f3, f4, f5, f6, m1, m2, m3, m4, m5, m6;
+//	double F[6];
+//	for (a = 0; a < 10000; a++)
+//	{
+//		F[1] = a;
+//		for (i = 2; i < 7; i++)
+//		{
+//			n = i - 1;
+//			F[i] = (5 * F[n]) / 4 + 1;
+//		}
+//		m1 = F[1] * 10;
+//		m2 = F[2] * 10;
+//		m3 = F[3] * 10;
+//		m4 = F[4] * 10;
+//		m5 = F[5] * 10;
+//		m6 = F[6] * 10;
+//		if (m1 % 10 == 0 && m2 % 10 == 0 && m3 % 10 == 0 && m4 % 10 == 0 && m5 % 10 == 0 && m6 % 10 == 0)
+//		{
+//			f1 = F[1];
+//			f2 = F[2];
+//			f3 = F[3];
+//			f4 = F[4];
+//			f5 = F[5];
+//			f6 = F[6];
+//			if (f1 % 4 == 0 && f2 % 4 == 0 && f3 % 4 == 0 && f4 % 4 == 0 && f5 % 4 == 0)
+//			{
+//				printf("%d %d", f6, a);
+//				break;
+//			}
+//		}
+//		else
+//			continue;
+//	}
+//	return 0;
+//}
+
+
+//#include<stdio.h>
+//#include<string.h>
+//int cardNum[20] = { 0 };
+//int isLucky[51] = { 0 };
+//int childLeft, count;
+//void pickChild(int n, int x) {
+//	int i, j;
+//	while (1) {
+//		for (i = 0; i < 20; ++i) {
+//			count = 0;
+//			for (j = 1; j <= n; ++j) {
+//				count += isLucky[j];
+//				if (count == cardNum[i]) {
+//					isLucky[j] = 0;
+//					if (x == --childLeft)return;
+//					count = 0;
+//				}
+//			}
+//		}
+//	}
+//}
+//int main() {
+//	int n, x, i;
+//	scanf("%d%d", &n, &x);
+//	for (i = 0; i < 20; ++i) {
+//		scanf("%d", cardNum + i);
+//	}
+//	for (i = 1; i <= n; ++i)isLucky[i] = 1;
+//	childLeft = n;
+//	pickChild(n, x);
+//	for (i = 1; i <= n; i++) if (isLucky[i] == 1) printf("%d ", i);
+//	return 0;
+//}
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int main()
+//{
+//	int n, m = 7, b;
+//	scanf("%d", &n);
+//	while (m <= n) {
+//		if ((m % 7 != 0) && ((m - 7) % 10 != 0)) b = b + 1;
+//		else printf("%d ", m);
+//		m = m + 1;
+//	};
+//	return 0;
+//}
+
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//void SectionSort(int a[], int s, int m)
+//{
+//	int i, j, k, t;
+//	for (i = s; i <= m; i++) {
+//		k = i;
+//		for (j = i + 1; j <= m; j++)
+//			if (a[j] > a[k])k = j;
+//		if (i != k) {
+//			t = a[i];
+//			a[i] = a[k];
+//			a[k] = t;
+//		}
+//	}
+//}
+//int main()
+//{
+//	int n, a[100], i, s, m;
+//	scanf("%d", &n);
+//	for (i = 0; i < n; i++)
+//		scanf("%d", &a[i]);
+//	scanf("%d%d", &s, &m);
+//	m = m + s - 1;
+//	SectionSort(a, s, m);
+//	for (i = 0; i < n; i++)
+//		printf("%d ", a[i]);
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main()
+//{
+//	int a[100], i, j, n, k;
+//	for (i = 0; i < 5; i++)
+//		scanf("%d", &a[i]);
+//	if (a[1] + a[0] == a[2] && a[2] + a[3] == a[4]) {
+//		for (i = 5; i < 10; i++) a[i] = a[i - 1] + a[i - 2];
+//		for (i = 5; i < 10; i++) printf("%d ", a[i]);
+//		return 0;
+//	}
+//	if (a[1] - a[0] == a[2] - a[1] && a[4] - a[3] == a[2] - a[1]) {
+//		k = a[1] - a[0];
+//		n = a[4];
+//		for (i = 0; i < 5; i++) n = n + k, printf("%d ", n);
+//		return 0;
+//	}
+//	if (a[1] / a[0] == a[2] / a[1] && a[4] / a[3] == a[2] / a[1]) {
+//		k = a[1] / a[0];
+//		n = a[4];
+//		for (i = 0; i < 5; i++) n = n * k, printf("%d ", n);
+//		return 0;
+//	}
+//	return 0;
+//}
+
+//
+//#include<stdio.h>
+//int move(int value, int n)
+//{
+//	if (n == 0) return value;
+//	else if (n < 0)
+//	{
+//		n = -n;
+//		value = (value << n) | (value >> (32 - n));
+//	}
+//	else value = (value >> n) | (value << (32 - n));
+//	return value;
+//}
+//int main()
+//{
+//	int value, n;
+//	scanf("%d %d", &value, &n);
+//	value = move(value, n);
+//	printf("%d", value);
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main()
+//{
+//	float c, n = 0;
+//	double i = 1;
+//	scanf("%f", &c);
+//	while (n < c) {
+//		n = n + 1 / (i + 1);
+//		i++;
+//	}
+//	printf("%.0lf", i - 1);
+//	return 0;
+//}
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <math.h>
+//int main()
+//{
+//	int x, y, a, b, l, m;
+//	scanf("%d%d%d%d%d", &x, &y, &a, &b, &l);
+//	a = fabs(a - b);
+//	x = l - fabs(x - y);
+//	for (m = 0;; m++)
+//		if ((x + m * l) % a == 0) {
+//			printf("%d", ((x + m * l) / a));
+//			break;
+//		};
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int main()
+//{
+//	int a[100], b[100], n, i;
+//	scanf("%d", &n);
+//	for (i = 0; i < n; i++)
+//		scanf("%d", &a[i]);
+//	for (i = 0; i < n; i++)
+//		b[i] = a[i];
+//	for (i = 1; i < n; i = i + 2)
+//		printf("%d ", b[i]);
+//	return 0;
+//}
+
+
+//#include<stdio.h>
+//int main()
+//{
+//	int i, j, k = 0, h, n, m, a[100], t, o = 0, q;
+//	scanf("%d", &m);
+//	scanf("%d", &n);
+//	for (i = 0; i < n; i++) scanf("%d", &a[i]);
+//	for (i = 0; i < n - 1; i++)
+//		for (j = 0; j < n - 1 - i; j++)
+//			if (a[j] < a[j + 1]) t = a[j], a[j] = a[j + 1], a[j + 1] = t;
+//	for (i = 0; i < n - o; i++) {
+//		q = 0;
+//		for (j = i + 1; j < n - o; j++)
+//			if (a[i] + a[j] <= m) {
+//				k++; o++; q++;
+//				for (h = j; h < n - o - 1; h++) a[h] = a[h + 1];
+//				break;
+//			};
+//		if (q == 0) k++;
+//	}
+//	printf("%d", k);
+//	return 0;
+//}
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main()
+//{
+//	int n, i, j;
+//	scanf("%d", &n);
+//	int a[n][n];
+//	for (i = 0; i < n; i++)
+//		for (j = 0; j < n; j++)
+//			scanf("%d", &a[i][j]);
+//	for (i = 0; i < n; i++) {
+//		for (j = 0; j < i; j++)
+//			printf("  ");
+//		for (j = i; j < n; j++)
+//			printf("%d ", a[i][j]);
+//		printf("\n");
+//	}
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main()
+//{
+//	int n, i, j;
+//	scanf("%d", &n);
+//	int a[n][n];
+//	for (i = 0; i < n; i++)
+//		for (j = 0; j < n; j++)
+//			scanf("%d", &a[i][j]);
+//	for (i = 0; i < n; i++) {
+//		for (j = i; j < n - 1; j++)
+//			printf("  ");
+//		for (j = n - i - 1; j < n; j++)
+//			printf("%d ", a[i][j]);
+//		printf("\n");
+//	}
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <math.h>
+//#define PI 3.1415926
+//
+//int main()
+//{
+//	double r, h, l, s, sq, vq, vz;
+//	scanf("%lf%lf", &r, &h);
+//	l = 2.0 * PI * r;
+//	s = PI * r * r;
+//	sq = 4.0 * PI * r * r;
+//	vq = (4.0 * PI * r * r * r) / 3.0;
+//	vz = PI * r * r * h;
+//	printf("%.2lf\n%.2lf\n%.2lf\n%.2lf\n%.2lf\n", l, s, sq, vq, vz);
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//int main()
+//{
+//	FILE* fp = fopen("DATA5612.CPP", "r"), * out;
+//	int i = 0;
+//	char s1[100], s2[100];
+//	if (fp != NULL) {
+//		out = fopen("DATA5612.TXT", "w");
+//		while (!feof(fp)) {
+//			if (fgets(s1, sizeof(s1) - 1, fp) == NULL) continue;
+//			sprintf(s2, "%04d %s", ++i, s1);
+//			fputs(s2, out);
+//		}
+//		fclose(out);
+//		fclose(fp);
+//	}
+//	return 0;
+//}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char c[80], b[80];
+	int n, i, s = 0, k, h = 0;
+	gets(c);
+	n = strlen(c);
+	for (i = 0; i < n; i++) {
+		if (c[i] <= 57 && c[i] >= 48) {
+			s++;
+			for (k = i;; k++) {
+				if (c[k] <= 57 && c[k] >= 48) {
+					i++;
+					b[h] = c[k];
+					h++;
+				}
+				else {
+					b[h] = 32;
+					h++;
+					break;
+				}
+			}
+		}
+	}
+	printf("%d\n", s);
+	for (i = 0; i < h; i++) printf("%c", b[i]);
+	return 0;
+}
