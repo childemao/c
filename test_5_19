@@ -1,0 +1,133 @@
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include<stdio.h>
+//#include<stdlib.h>
+//struct test
+//{
+//	int a;
+//	char b;
+//};
+//int main()
+//{
+//	struct test t = { 0 };
+//	t.a = 1;
+//	t.b = t.a;
+//	if (t.b == 1)
+//	{
+//		printf("此为小端模式");
+//	}
+//	else
+//	{
+//		printf("此为大端模式");
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//struct test
+//{
+//	char ch;
+//	int a;
+//};
+//
+//int cheak_system_model()
+//{
+//	struct test t = { 0 };
+//	t.a = 1;
+//	return t.ch;
+//}
+//
+//
+//int main()
+//{
+//	int fig = 0;
+//	
+//	fig = cheak_system_model();
+//	if (fig)
+//	{
+//		printf("此为小端模式");
+//	}
+//	else
+//	{
+//		printf("此为大端模式");
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main()
+//{
+//	char A[80] = { 0 }, * p, x;
+//	int i;
+//	p = A;
+//	gets(A);
+//	scanf("%c%d", &x, &i);
+//	for (; *p != '\0'; p++);
+//	for (; p > A + i; p--)
+//		* p = *(p - 1);
+//	*(A + i) = x;
+//	puts(A);
+//	return 0;
+//}
+
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//struct tag {
+//	long int no;
+//	char name[21];
+//	int age;
+//	double yy, sx, yw, zz, wl, hx, xx, s, jun;
+//};
+//int main()
+//{
+//	struct tag a[10], t, q;
+//	int i, j;
+//	for (i = 0; i < 10; i++)
+//		scanf("%ld%s%d%lf%lf%lf%lf%lf%lf%lf", &a[i].no, a[i].name, &a[i].age, &a[i].yy, &a[i].sx, &a[i].yw, &a[i].zz, &a[i].wl, &a[i].hx, &a[i].xx);
+//	for (i = 0; i < 10; i++) {
+//		a[i].s = a[i].yy + a[i].sx + a[i].yw + a[i].zz + a[i].wl + a[i].hx + a[i].xx;
+//		a[i].jun = a[i].s / 7;
+//	}
+//	t.s = a[0].s;
+//	for (i = 1; i < 10; i++)
+//		if (a[i].s > t.s) {
+//			t.s = a[i].s;
+//			j = i;
+//		}
+//	q = a[j];
+//	printf("%ld %s %d %.2lf %.2lf %.2lf %.2lf %.2lf %.2lf %.2lf", q.no, q.name, q.age, q.yy, q.sx, q.yw, q.zz, q.wl, q.hx, q.xx);
+//	return 0;
+//}
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int main()
+{
+	int a[100], b[100], n, i, j;
+	double s, p, l, t;
+	for (i = 0;; i++) {
+		scanf("%d%d", &a[i], &b[i]);
+		if (a[i] == 0 && b[i] == 0) break;
+	}
+	n = i;
+	for (i = 0; i < n; i++) {
+		p = 10000;
+		if (b[i] % a[i] == 0) { printf("0.0000\n"); continue; };
+		t = 10000 / ((double)a[i]);
+		for (j = 1; j < a[i] + b[i]; j++) {
+			l = 10000 / ((double)(a[i] + b[i]));
+			l = t - j * l;
+			l = fabs(l);
+			if (l < p) p = l;
+		}
+		s = (a[i] - 1) * p;
+		printf("%.4lf\n", s);
+	}
+	return 0;
+}
