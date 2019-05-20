@@ -1,0 +1,552 @@
+
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//
+//struct Node
+// {
+//	    double weight;
+//	     string ch;
+//	     string code;
+//	     int lchild, rchild, parent;
+//	 };
+//
+//void Select(Node huffTree[], int* a, int* b, int n)  
+//{
+//	    int i;
+//	     double weight = 0; 
+//	     for (i = 0; i < n; i++)
+//		     {
+//		        if (huffTree[i].parent != -1)     
+//			            continue;
+//		         else
+//			         {
+//			             if (weight == 0)
+//				             {
+//				                 weight = huffTree[i].weight;
+//				 * a = i;
+//				            }
+//			            else
+//				            {
+//			                 if (huffTree[i].weight < weight)
+//					                 {
+//					                     weight = huffTree[i].weight;
+//					 * a = i;
+//					                 }
+//				             }
+//	         }
+//		     }
+//	    weight = 0; 
+//	    for (i = 0; i < n; i++)
+//		     {
+//		         if (huffTree[i].parent != -1 || (i == *a))
+//			             continue;
+//		         else
+//			         {
+//		             if (weight == 0)
+//				             {
+//				                weight = huffTree[i].weight;
+//				* b = i;
+//				            }
+//			            else
+//			             {
+//				                 if (huffTree[i].weight < weight)
+//					                 {
+//					                    weight = huffTree[i].weight;
+//					 * b = i;
+//					               }
+//		            }
+//			         }
+//		    }
+//	     int temp;
+//	     if (huffTree[*a].lchild < huffTree[*b].lchild)  
+//		     {
+//		         temp = *a;
+//		 * a = *b;
+//		 * b = temp;
+//		     }
+//	 }
+//
+//void Huff_Tree(Node huffTree[], int w[], string ch[], int n)
+//{
+//	     for (int i = 0; i < 2 * n - 1; i++) 
+//		    {
+//		         huffTree[i].parent = -1;
+//		         huffTree[i].lchild = -1;
+//		         huffTree[i].rchild = -1;
+//		         huffTree[i].code = "";
+//		     }
+//	     for (int i = 0; i < n; i++)
+//		     {
+//		         huffTree[i].weight = w[i];
+//		         huffTree[i].ch = ch[i];
+//		    }
+//	    for (int k = n; k < 2 * n - 1; k++)
+//		     {
+//		         int i1 = 0;
+//		        int i2 = 0;
+//		       Select(huffTree, &i1, &i2, k);
+//		         huffTree[i1].parent = k;
+//		         huffTree[i2].parent = k;
+//		         huffTree[k].weight = huffTree[i1].weight + huffTree[i2].weight;
+//		         huffTree[k].lchild = i1;
+//		         huffTree[k].rchild = i2;
+//		     }
+//	 }
+//
+//void Huff_Code(Node huffTree[], int n)
+// {
+//	     int i, j, k;
+//	    string s = "";
+//     for (i = 0; i < n; i++)
+//		     {
+//		         s = "";
+//	         j = i;
+//		         while (huffTree[j].parent != -1) 
+//			         {
+//			             k = huffTree[j].parent;
+//			             if (j == huffTree[k].lchild)
+//				            {
+//				                 s = s + "0";
+//				            }
+//			             else
+//				             {
+//				                 s = s + "1";
+//				           }
+//			             j = huffTree[j].parent;
+//			       }
+//		         cout << "字符 " << huffTree[i].ch << " 的编码：";
+//		      for (int l = s.size() - 1; l >= 0; l--)
+//		        {
+//			             cout << s[l];
+//			             huffTree[i].code += s[l];
+//			         }
+//		         cout << endl;
+//		     }
+//	 }
+//
+//string Huff_Decode(Node huffTree[], int n, string s)
+// {
+//	     cout << "解码后为：";
+//	     string temp = "", str = "";
+//	     for (int i = 0; i < s.size(); i++)
+//		     {
+//		         temp = temp + s[i];
+//		         for (int j = 0; j < n; j++)
+//			        {
+//			             if (temp == huffTree[j].code)
+//				            {
+//				                str = str + huffTree[j].ch;
+//				               temp = "";
+//				               break;
+//				           }
+//			            else if (i == s.size() - 1 && j == n - 1 && temp != "")
+//				            {
+//				                 str = "解码错误！";
+//				             }
+//			         }
+//		     }
+//	     return str;
+//	 }
+//
+//int main()
+//{
+//	
+//		     const int n = 5;
+//	     Node huffTree[2 * n];
+//	     string str[] = { "A", "B", "C", "D", "E" };
+//	     int w[] = { 30, 30, 5, 20, 15 };
+//	     Huff_Tree(huffTree, w, str, n);
+//	     Huff_Code(huffTree, n);
+//	    
+//		     string s;
+//	    cout << "输入编码：";
+//	     cin >> s;
+//	    cout << Huff_Decode(huffTree, n, s) << endl;;
+//	    system("pause");
+//	    return 0;
+//}
+
+
+
+//#include <iostream>
+//using namespace std;
+//
+//#define INFINITE 0x7fffffff
+//int PathDijkstra(int cost[5][5], int n, int s, double Dist[], int Pre[]) {
+//	int i, j, k, count;
+//	int BoolInA[100];
+//	double mindis;
+//	int minpnt;
+//
+//	for (i = 0; i < n; i++) {
+//		Dist[i] = cost[s][i];
+//		Pre[i] = s;
+//		BoolInA[i] = 0;
+//	}
+//	BoolInA[s] = 1;
+//	for (count = 1; count <= n - 1; count++) {
+//		mindis = INFINITE;
+//		for (i = 0; i < n; i++) {
+//			if (!BoolInA[i] && mindis > Dist[i]) {
+//				mindis = Dist[i];
+//				minpnt = i;
+//			}
+//		}
+//		BoolInA[minpnt] = 1;
+//		for (i = 0; i < n; i++) {
+//			if (!BoolInA[i] && Dist[i] > Dist[minpnt] + cost[minpnt][i]) {
+//				Dist[i] = Dist[minpnt] + cost[minpnt][i];
+//				Pre[i] = minpnt;
+//			}
+//		}
+//	}
+//	return 1;
+//}
+//
+//int main() 
+//{
+//	int n = 5;
+//	int cost[5][5], i, j, k;
+//	double dist[100];
+//	int pre[100];
+//
+//	for (i = 0; i < n; i++) {
+//		for (j = 1; j < n; j++) {
+//			if (i < j) {
+//				cin >> cost[i][j];
+//			}
+//			else {
+//				cost[i][j] = INFINITE;
+//			}
+//		}
+//	}
+//
+//		for(i = 0; i < n; i++){
+//			for(j = 0; j < n; j++){
+//					cout << cost[i][j] << " ";
+//			}
+//				cout << endl;
+//		}
+//
+//	PathDijkstra(cost, 5, 0, dist, pre);
+//	for (i = 1; i < n; i++) {
+//		cout << dist[i] << " ";
+//	}
+//}
+
+
+
+#include<iostream>
+#include<string>
+#include<vector>
+using  namespace std;
+
+
+struct Graph
+{
+	int vexnum; 
+	int edge;   
+	int** arc;
+	string* information; 
+};
+
+
+void createGraph(Graph& g)
+{
+	cout << "请输入顶点数：输入边的条数" << endl;
+	cin >> g.vexnum;
+	cin >> g.edge; 
+
+	g.information = new string[g.vexnum];
+	g.arc = new int* [g.vexnum];
+	int i = 0;
+
+	
+	for (i = 0; i < g.vexnum; i++)
+	{
+		g.arc[i] = new int[g.vexnum];
+		g.information[i] = "v" + std::to_string(i + 1);
+		for (int k = 0; k < g.vexnum; k++) 
+		{
+			g.arc[i][k] = INT_MAX;         
+		}
+	}
+
+	cout << "请输入每条边之间的顶点编号(顶点编号从1开始),以及该边的权重：" << endl;
+	for (i = 0; i < g.edge; i++) {
+		int start;
+		int end;
+		cin >> start;   
+		cin >> end;   
+		int weight;
+		cin >> weight;
+		g.arc[start - 1][end - 1] = weight;
+		g.arc[end - 1][start - 1] = weight;
+	}
+}
+
+
+void print(Graph g) {
+	int i;
+	for (i = 0; i < g.vexnum; i++)
+	{
+		
+		for (int j = 0; j < g.vexnum; j++)
+		{
+			if (g.arc[i][j] == INT_MAX)
+				cout << "∞" << " ";
+			else
+				cout << g.arc[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+
+
+struct Assis_array
+{
+	int start; 
+	int end;  
+	int weight;  
+};
+
+void Prim(Graph g, int begin) {
+
+	
+	Assis_array* close_edge = new Assis_array[g.vexnum];
+
+	int j;
+
+
+	for (j = 0; j < g.vexnum; j++)
+	{
+		if (j != begin - 1) {
+			close_edge[j].start = begin - 1;
+			close_edge[j].end = j;
+			close_edge[j].weight = g.arc[begin - 1][j];
+		}
+	}
+	
+	close_edge[begin - 1].weight = -1;
+	
+	for (j = 1; j < g.vexnum; j++)
+	{
+
+		int min = INT_MAX;
+		int k;
+		int index;
+		
+		for (k = 0; k < g.vexnum; k++) {
+			if (close_edge[k].weight != -1) {
+				if (close_edge[k].weight < min) {
+					min = close_edge[k].weight;
+					index = k;
+				}
+			}
+		}
+		
+		close_edge[index].weight = -1;
+		
+		cout << g.information[close_edge[index].start]
+			<< "-----"
+			<< g.information[close_edge[index].end]
+			<< "="
+			<< g.arc[close_edge[index].start][close_edge[index].end]
+			<< endl;
+
+		
+		for (k = 0; k < g.vexnum; k++) {
+			if (g.arc[close_edge[index].end][k] < close_edge[k].weight) {
+				close_edge[k].weight = g.arc[close_edge[index].end][k];
+				close_edge[k].start = close_edge[index].end;
+				close_edge[k].end = k;
+			}
+		}
+	}
+}
+
+
+
+int main()
+{
+	Graph g;
+	createGraph(g);
+	print(g);
+	Prim(g, 1);
+	system("pause");
+	return 0;
+}
+
+
+
+
+
+#include<iostream>
+#include<algorithm>
+#include<string>
+using namespace std;
+
+
+bool check(int Vexnum, int edge) 
+{
+	if (Vexnum <= 0 || edge <= 0 || ((Vexnum * (Vexnum - 1)) / 2) < edge)
+		return false;
+	return true;
+}
+
+
+
+bool check_edge(int Vexnum, int start, int end, int weight)
+{
+	if (start<1 || end<1 || start>Vexnum || end>Vexnum || weight < 0) {
+		return false;
+	}
+	return true;
+}
+
+
+typedef struct edge_tag
+{
+	bool visit; 
+	int start;   
+	int end;   
+	int weight; 
+}Edge;
+void createGraph(Edge * &e, int Vexnum, int edge) 
+{
+	e = new Edge[edge];
+	int start = 0;
+	int end = 0;
+	int weight = 0;
+
+	int i = 0;
+	cout << "输入每条边的起点、终点和权重：" << endl;
+	while (i != edge)
+	{
+		cin >> start >> end >> weight;
+		while (!check_edge(Vexnum, start, end, weight)) {
+			cout << "输入的值不合法，请重新输入每条边的起点、终点和权重：" << endl;
+			cin >> start >> end >> weight;
+		}
+		e[i].start = start;
+		e[i].end = end;
+		e[i].weight = weight;
+		e[i].visit = false;
+		++i;
+
+	}
+}
+
+
+int cmp(const void* first, const void* second)
+{
+	return ((Edge*)first)->weight - ((Edge*)second)->weight;
+}
+
+
+int find_root(int child, int* parent) 
+{
+
+	
+	if (parent[child] == child)
+	{
+		return child;
+	}
+	
+	parent[child] = find_root(parent[child], parent);
+	return parent[child];
+}
+
+
+bool union_tree(Edge  e, int* parent, int* child) {
+	
+	int root1;
+	int root2;
+	
+	root1 = find_root(e.start - 1, parent);
+	root2 = find_root(e.end - 1, parent);
+
+	if (root1 != root2)
+	{
+		
+		if (child[root1] > child[root2])
+		{
+			parent[root2] = root1;
+		
+			
+			child[root1] += child[root2] + 1;
+		}
+		else {
+			parent[root1] = root2;
+			child[root2] += child[root1] + 1;
+		}
+		return true;
+	}
+	return false;
+}
+
+
+void Kruskal()
+{
+	int Vexnum = 0;
+	int edge = 0;
+	cout << "请输入图的顶点数和边数：" << endl;
+	cin >> Vexnum >> edge;
+	while (!check(Vexnum, edge)) {
+		cout << "你输入的图的顶点数和边数不合法，请重新输入：" << endl;
+		cin >> Vexnum >> edge;
+	}
+
+	
+	Edge* edge_tag;
+	
+	createGraph(edge_tag, Vexnum, edge);
+
+	int* parent = new int[Vexnum]; 
+	int* child = new int[Vexnum]; 
+	int i;
+	for (i = 0; i < Vexnum; i++) 
+	{
+		parent[i] = i;
+		child[i] = 0;
+	}
+	
+	qsort(edge_tag, edge, sizeof(Edge), cmp);
+	int count_vex; 
+
+	count_vex = i = 0;
+	while (i != edge)
+	{
+	
+		if (union_tree(edge_tag[i], parent, child))
+		{
+			cout << ("v" + std::to_string(edge_tag[i].start))
+				<< "-----"
+				<< ("v" + std::to_string(edge_tag[i].end))
+				<< "="
+				<< edge_tag[i].weight
+				<< endl;
+			edge_tag[i].visit = true;
+			++count_vex;
+		}
+		
+		if (count_vex == Vexnum - 1) {
+			break;
+		}
+		++i;
+	}
+
+	if (count_vex != Vexnum - 1) {
+		cout << "此图为非连通图！无法构成最小生成树。" << endl;
+	}
+	delete[] edge_tag;
+	delete[] parent;
+	delete[] child;
+}
+
+int main() {
+	Kruskal();
+	system("pause");
+	return 0;
+}
