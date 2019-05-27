@@ -1,0 +1,96 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+
+//int main()
+//{
+//	char d[20] = "asddre fvvgf";
+//	char* s = "lichang";
+//
+//	strcat(d, s);
+//	printf("%s", d);
+//	system("pause");
+//	return 0;
+//}
+
+//
+//main()
+//{
+//	char d[20] = "Golden Global";
+//	char* s = " View";
+//
+//	clrscr();
+//
+//	strcat(d, s);
+//	printf("%s", d);
+//
+//	getchar();
+//	return 0;
+//}
+
+//int main()
+//{
+//	char d[20] = "asddre fvvgf";
+//	/*char* s = "lichang";*/
+//	char s[7] = "lichang";
+//	strncat(d, s,3);
+//	printf("%s", d);
+//	system("pause");
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	char d[20] = "asddre fvvgf";
+//	char* s = "lichang";
+//	/*char s[7] = "lichang";*/
+//	memcpy(d, s,7);
+//	printf("%s", d);
+//	system("pause");
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	char d[20] = "asddre fvvgf";
+//	/*char* s = "lichang";*/
+//	char s[7] = "lichang";
+//	memcpy(d, s, 3);
+//	printf("%s", d);
+//	system("pause");
+//	return 0;
+//}
+
+//
+//int main()
+//{
+//	char d[20] = "asddre fvvgf";
+//	/*char* s = "lichang";*/
+//	char s[7] = "lichang";
+//	strncat(d, s, 3);
+//	printf("%s", d);
+//	system("pause");
+//	return 0;
+//}
+
+int main()
+{
+	char* s1 = "Hello, Programmers!";
+	char* s2 = "Hello, programmers!";
+	int r;
+
+
+	r = strcmp(s1, s2);
+	if (!r)
+		printf("s1 and s2 are identical");
+	else
+		if (r < 0)
+			printf("s1 less than s2");
+		else
+			printf("s1 greater than s2");
+	return 0;
+}
