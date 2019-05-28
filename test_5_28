@@ -1,0 +1,145 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+//int main()
+//{
+//	
+//		char* s = "Golden Global View";
+//		char* p;
+//
+//		strchr(s, 'V');
+//		if (p)
+//			printf("%s", p);
+//		else
+//			printf("Not Found!");
+//	system("pause");
+//	return 0;
+//}
+
+//char my_strcpy(char *a,const char *s)
+//{
+//	char start = a;
+//	assert(a != NULL && s != NULL);
+//	while (*a = *s)
+//	{
+//		a++;
+//		s++;
+//	}
+//	return start;
+//}
+//char my_strcpy(char* a, const char* s)
+//{
+//	while (*s != '\0')
+//	{
+//		a = s;
+//		a++;
+//		s++;
+//	}
+//	return s;
+//}
+//int main()
+//{
+//	char b[20];
+//	char a[20] = "abcdeefg";
+//	char* s = "nef";
+//	b[20] = my_strcpy(a, s);
+//	printf("%s\n",a);
+//	system("pause");
+//	return 0;
+//}
+
+//int BinarySearch(int A[], int n, int find) {
+//	int low, upper, mid;
+//	low = 0, upper = n - 1;
+//	while (low <= upper) {
+//		mid = low + (upper - low) / 2;
+//		if (A[mid] < find)low = mid + 1;
+//		else if (A[mid] > find)upper = mid - 1;
+//		else return mid;
+//	}return -1;
+//}
+//int main()
+//{
+//	int A[100000], n, m, i, j;
+//	scanf("%d", &n);
+//	for (i = 0; i < n; i++) {
+//		scanf("%d", &A[i]);
+//	}
+//	scanf("%d", &j);
+//	i = BinarySearch(A, n, j);
+//	if (i >= 0)printf("%d", i);
+//	else printf("null");
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	char s[1000], b[1000][1000];
+//	int i, n, j, h = 0, m;
+//	gets(s);
+//	n = strlen(s);
+//	for (i = 0; i < n; i++) {
+//		if ((s[i] > 64 && s[i] < 91) || (s[i] > 96 && s[i] < 123)) {
+//			m = 0;
+//			for (j = i;; j++) {
+//				if ((s[j] > 64 && s[j] < 91) || (s[j] > 96 && s[j] < 123)) {
+//					b[h][m] = s[j]; m++; i++;
+//				}
+//				else {
+//					b[h][m] = ' ';
+//					h++;
+//					break;
+//				}
+//			}
+//			h++;
+//		}
+//	}
+//	for (i = h - 2; i >= 0; i--)
+//		printf("%s", b[i]);
+//	return 0;
+//}
+
+//
+//int main()
+//{
+//	int a, b, c, d, i;
+//	scanf("%d%d%d", &a, &b, &c);
+//	d = a % b;
+//	printf("%d.", a / b);
+//	for (i = 0; i < c; i++)
+//	{
+//		d = 10 * d;
+//		printf("%d", d / b);
+//		d = d % b;
+//	}
+//	printf("\n");
+//	return 0;
+//}
+
+
+
+int main()
+{
+	double a, b, c, d;
+	char x1, x2, x3, x4, x5, x6;
+	scanf("%lf%lf%lf%lf", &a, &b, &c, &d);
+	if (b > 0)x1 = '+';
+	else x1 = '-';
+	if (d > 0)x2 = '+';
+	else x2 = '-';
+	if (b + d > 0)x3 = '+';
+	else x3 = '-';
+	if (b - d > 0)x4 = '+';
+	else x4 = '-';
+	if (a * d + b * c > 0)x5 = '+';
+	else x5 = '-';
+	if ((b * c - a * d) / (c * c + d * d) > 0)x6 = '+';
+	else x6 = '-';
+	printf("(%.2lf%c%.2lfi)+(%.2lf%c%.2lfi)=(%.2lf%c%.2lfi)\n", a, x1, fabs(b), c, x2, fabs(d), a + c, x3, fabs(b + d));
+	printf("(%.2lf%c%.2lfi)-(%.2lf%c%.2lfi)=(%.2lf%c%.2lfi)\n", a, x1, fabs(b), c, x2, fabs(d), a - c, x4, fabs(b - d));
+	printf("(%.2lf%c%.2lfi)*(%.2lf%c%.2lfi)=(%.2lf%c%.2lfi)\n", a, x1, fabs(b), c, x2, fabs(d), a * c - b * d, x5, fabs(a * d + b * c));
+	printf("(%.2lf%c%.2lfi)/(%.2lf%c%.2lfi)=(%.2lf%c%.2lfi)", a, x1, fabs(b), c, x2, fabs(d), (a * c + b * d) / (c * c + d * d), x6, fabs((b * c - a * d) / (c * c + d * d)));
+	return 0;
+}
