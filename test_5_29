@@ -1,0 +1,74 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+//
+//int main()
+//{
+//	{
+//		double a;
+//		int m, d, c, n;
+//		scanf("%lf", &a);
+//		a = fabs(a);
+//		n = (int)a;
+//		m = 0;
+//		d = 1;
+//		if (n < 1) {
+//			printf("0");
+//			return 0;
+//		};
+//		do {
+//			d = d * 10;
+//			c = n - d;
+//			m = m + 1;
+//		} while (c > 0);
+//		printf("%d", m);
+//
+//
+//	return 0;
+//}
+
+
+//
+//int main()
+//{
+//	int n, m, i;
+//	double sum = 0;
+//	scanf("%d %d", &n, &m);
+//	for (i = n; i <= m; i++) {
+//
+//		sum = sum + 1 / pow(i, 2.0);
+//	}
+//	printf("%.5lf", sum);
+//
+//	return 0;
+//}
+
+//
+//void bijiao(char* a, char* b)
+//{
+//	int i;
+//	for (i = 0; i <= 80; i++)
+//		if (a[i] != b[i]) {
+//			printf("%d", a[i] - b[i]);
+//			break;
+//		}
+//}
+//int main()
+//{
+//	char a[80], b[80];
+//	gets(a);
+//	gets(b);
+//	bijiao(a, b);
+//	return 0;
+//}
+
+
+int main()
+{
+	char A[100], B[100];
+	int i = 0, j;
+	while ((A[i] = getchar()) != '=')i++;
+	for (j = i - 1; j > -1; j--)
+		printf("%c", A[j]);
+	return 0;
+}
