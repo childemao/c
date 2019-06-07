@@ -1,0 +1,106 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+#include<crtdbg.h>
+
+//union Un
+//{
+//	char c;
+//	int i;
+//};
+//int main()
+//{
+//
+////联合变量的定义
+//    union Un un;
+////计算连个变量的大小
+//    printf("%d\n", sizeof(un));
+//
+//
+//
+//	return 0;
+//}
+
+
+//
+//union Un1
+//{
+//	char c[5];
+//	int i;
+//};
+//union Un2
+//{
+//	short c[7];
+//	int i;
+//};
+////下面输出的结果是什么？
+//int main()
+//{
+//	printf("%d\n", sizeof(union Un1));
+//	printf("%d\n", sizeof(union Un2));
+//	return 0;
+//}
+
+
+//int main()
+//{	
+//	
+//	int j = 0;
+//	int* ptr = NULL;
+//	ptr = (int*)malloc(10 * sizeof(int));
+//	if (NULL != ptr)
+//	{
+//		int i = 0;
+//		for (i = 0; i <10; i++)
+//		{
+//			*(ptr + i) = 0;
+//		}
+//	}
+//	for (j = 0; j < 10; j++)
+//	{
+//		printf("%d", *ptr);
+//	}
+//	free(ptr);//释放ptr所指向的动态内存
+//	ptr = NULL;
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int* ptr = malloc(100);
+//	if (ptr != NULL)
+//	{
+//
+//	}
+//	else
+//	{
+//		exit(EXIT_FAILURE);
+//	}
+//	
+//	ptr = realloc(ptr, 1000);
+//	//代码2
+//	int* p = NULL;
+//	p = realloc(ptr, 1000);
+//	if (p != NULL)
+//	{
+//		ptr = p;
+//	}
+//	//业务处理
+//	free(ptr);
+//	return 0;
+//}
+
+
+void GetMemory(char* p)
+{
+	p = (char*)malloc(100);
+}
+void Test(void)
+{
+	char* str = NULL;
+	GetMemory(str);
+	strcpy(str, "hello world");
+	printf(str);
+}
+
