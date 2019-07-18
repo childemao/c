@@ -1,0 +1,145 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+//void preorderNoR(Node* root) {
+//	Node* cur = root;
+//	std::stack<Node*> st;
+//
+//	while (cur != NULL || !st.empty()) {
+//		while (cur != NULL) {
+//			printf("%d ", cur->val);
+//			st.push(cur);
+//			cur = cur->left;
+//		}
+//
+//		Node* top = st.top();
+//		st.pop();
+//
+//		cur = top->right;
+//	}
+//}
+
+
+//前序非递归
+//void preorderNoR(Node* root) {
+//	Node* cur = root;
+//	std::stack<Node*> st;
+//
+//	while (cur != NULL || !st.empty()) {
+//		while (cur != NULL) {
+//			printf("%d ", cur->val);
+//			st.push(cur);
+//			cur = cur->left;
+//		}
+//
+//		Node* top = st.top();
+//		st.pop();
+//		cur = top->right;
+//	}
+//}
+
+//void inorderNoR(Node* root) {
+//	Node* cur = root;
+//	std::stack<Node*> st;
+//
+//	while (cur != NULL || !st.empty()) {
+//		while (cur != NULL) {
+//			st.push(cur);
+//			cur = cur->left;
+//		}
+//
+//		Node* top = st.top();
+//		printf("%d ", top->val);
+//		st.pop();
+//
+//		cur = top->right;
+//	}
+//}
+
+
+//中序非递归
+//void inorderNoR(Node* root) {
+//	Node* cur = root;
+//	std::stack<Node*> st;
+//
+//	while (cur == NULL || !st.empty()) {
+//		while (cur != NULL) {
+//
+//			st.push(cur);
+//			cur = cur->left;
+//		}
+//		Node* top = st.top;
+//		printf("%d ", top->val);
+//		st.pop();
+//		cur = top->right;
+//	}
+//}
+
+//后序非递归
+//void poshorderNoR(Node* root) {                                  
+//	Node* cur = root;
+//	Node* last = NULL;    //
+//	std::stack<Node*> st;
+//	while (cur != NULL || !st.empty()) {
+//		while (cur != NULL) {
+//			st.push(cur);
+//			cur = cur->left;
+//		}
+//		Node* top = st.top;
+//		if (top->right == NULL || top->right == last) {
+//			printf("%d ", top->val);
+//			st.pop();
+//          last= top;
+//		}
+//		else {
+//			cur = top->right;
+//		}
+//	}
+//}
+
+#include <queue>
+void levelOrder(Node* root) {
+	if (root == NULL) {
+		return;
+	}
+
+	std::queue<Node*> q;
+	Queue	q;
+	q.push(root);
+
+	while (!q.empty()) {
+		// Node * front = QueueFront(&q); QueuePop(&q);
+		Node* front = q.front();	q.pop();
+
+		printf("%d ", front->val);
+		if (front->left != NULL) {
+			q.push(front->left);
+		}
+		if (front->right != NULL) {
+			q.push(front->right);
+		}
+	}
+}
+
+//广度遍历
+#include<queue>
+void levelorder(Node* root) {
+	if (root == NULL) {
+		return;  
+	}
+	std::queue<Node*> q;
+	queue q;
+	q.push(root);
+
+	while (!q.empty()) {
+		Node* front = q.front();
+		q.pop();
+		printf("%d ", front->right);
+		if (front->left != NULL) {
+			q.push(front->left);
+		}
+		if (front->right != NULL) {
+			q.push(front->right);
+		}
+	}
+}
