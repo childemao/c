@@ -1,0 +1,265 @@
+#include<stdio.h>
+#include<stdlib.h>
+//void print(int* a, int size) {
+//
+//	for (int i = 0; i < size; i++) {
+//		printf("%d ", a[i]);
+//	}
+//	printf("\n");
+//
+//}
+//void swap(int* a, int* b) {
+//	int t = *a;
+//	*a = *b;
+//	*b = t;
+//}
+//void selectsort(int a[], int size) {
+//	int left = 0;
+//	int right = size - 1;
+//	while (left < right) {
+//		int min = left;
+//		int max = left;
+//		for (int i = left + 1; i <= right; i++) {
+//			if (a[i] < a[min]) {
+//				min = i;
+//			}
+//			if (a[i] > a[max]) {
+//				max = i;
+//			}
+//		}
+//
+//			swap(a + min, a + left);
+//			if (max == left) {
+//				max = min;
+//			}
+//			swap(a + max, a + right);
+//			
+//		
+//		left++;
+//		right--;
+//	}
+//}
+
+//int main() {
+//	int a[] = { 1,9,2,8,3,7,4,6,5 };
+//	int size = sizeof(a) / sizeof(int);
+//	print(a, size);
+//	selectsort(a, size);
+//	print(a, size);
+//	return 0;
+//}
+void print(int* a, int size) {
+
+	for (int i = 0; i < size; i++) {
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+
+}
+void swap(int* a, int* b) {
+	int t = *a;
+	*a = *b;
+	*b = t;
+}
+
+
+//选择排序思路，找出数组中最大的数或最小的数，或最大最小的数，将最大的数放入最右边，最小的数放入最左边
+//void selectSort(int* a, int size) {
+//	//有序[0,left} [right,size-1]
+//	//无序[left,right]
+//	int left = 0;
+//	int right = size - 1;
+//	while (left < right) {  //left < right 表示无序区间至少还有两个数
+//		int mix = left;
+//		int max = left;
+//		for (int i = left + 1; i <= right; i++) {
+//			if (a[mix] > a[i]) {
+//				mix = i;
+//			}
+//			if (a[max] < a[i]) {
+//				max = i;
+//			}
+//		}
+//		swap(a + mix, a + left);
+//		if (max == left) {
+//			max = mix;
+//		}
+//		swap(a + max, a + right);
+//		left++;
+//		right--;
+//	}
+//}
+
+
+//插入排序
+//(拿出第一个数，放入最左边，拿出第二个数，与第一个数比较，小于第一个数，放入第一个数左边，
+//大于等于第一个数，放右边，以此类推，直到将最后一个数比完
+//void insertSort(int* a, int size) {
+//	//有序区间[0,i)
+//	//无序区间[i,size)
+//	int i = 0;
+//	for (i = 0; i < size; i++) {
+//		int k = a[i];
+//		int j = 0;
+//		for (j = i-1; j>=0 && k<a[j]; j--) {//与有序区间的数比较，大的放后，小的放前
+//			a[j + 1] = a[j];
+//		}
+//		a[j + 1] = k;
+//	}
+//}
+
+//void shellSort(int* a, int size) {
+//	int gap = size;
+//	while (1) {
+//		gap = gap / 3 + 1;
+//		for (int i = 0; i < size; i++) {
+//			int k = a[i];
+//			int j = 0;
+//			for (j = i - gap; j >= 0 && k < a[j]; j-=gap) {//j--时每次减gap步
+//				a[j + gap] = a[j];
+//			}
+//			a[j + gap] = k;
+//		}
+//		if (gap == 1) {//gap==1时表明进行插入排序，说明已经排序好了
+//			break;
+//		}
+//	}
+//}
+//向下调整法，建大堆
+//void heapify(int* a, int size, int index) {
+//	int left = 2 * index + 1;
+//	int right = 2 * index + 2;
+//	if (left >= size) {
+//		return;
+//	}
+//	int max = left;
+//	if (right < size && a[left] < a[right]) {
+//		max = right;
+//	}
+//	if (a[index] >= a[max]) {
+//		return;
+//	}
+//	swap(a+index, a+max);
+//	heapify(a, size, max);
+//}
+////从最后一个非叶子节点开始向下调整
+//void createHeap(int* a, int size) {
+//	for (int i = (size - 2) / 2; i >= 0; i--) {
+//		heapify(a, size, i);
+//	}
+//}
+//
+//void heapSort(int* a, int size) {
+//	createHeap(a, size); 
+//	//无序区间[0,size-i)
+//	//有序区间[size-i,size)
+//	for (int i = 0; i < size; i++) {
+//		swap(a, a + size - 1 - i);
+//		heapify(a, size - i - 1, 0);
+//	}
+//}
+
+// [left, right]
+//void quickSortInternal(int a[], int left, int right) {
+//	if (left >= right) {
+//		// [left, right] 区间内只剩 1 或者 0 个数
+//		return;
+//	}
+//
+//	// 1. 确定基准值，最右边	a[right]
+//	// 2. 做 partition，小的左，大的右，返回基准值最终的下标
+//	int pivotIndex = partition3(a, left, right);
+//	// 3. 分治处理左右两个小区间
+//	quickSortInternal(a, left, pivotIndex - 1);
+//	quickSortInternal(a, pivotIndex + 1, right);
+//}
+//快速排序，1.确定一个基准值，
+//2.比基准值小的放左边，比基准值大的放右边
+//3.按照分治思想，将基准值左边的如同上面的方法，确定基准值，然后比较，直到两个相邻基准值中的数等于1
+//或没有，将右边也同样处理
+//void quickSortInternal(int* a, int left, int right) {
+//	if (left >= right) {
+//		return;
+//	}
+//	int pivotIndex = partittion(a, left, right);
+//	quickSortInternal(a, left, pivotIndex - 1);
+//	quickSortInternal(a, pivotIndex + 1, right);
+//}
+
+//将最右边的数定位基准值，第一个数为begin，最后一个数为end,begin开始向右移，
+//end向左移，begin遇到小于等于基准值的向右移，大于基准值停下
+//end遇到大于等于基准值的向左移，遇到小于基准值的停下，交换begin和end 的值
+//直到begin和end 之间的之为0，及比较了所有数与基准值的大小，保证比基准值大的在右边
+//比基准值小的在左边
+//最后把基准值移到begin或end 处
+//int partititionl(int* a, int left, int right) {
+//	int begin = left;
+//	int end = right;
+//	int pivot = a[right];
+//	while (begin < end) {
+//		while (begin < end && a[begin] <= pivot) {
+//			begin++;
+//		}
+//		while (begin < end && a[end] >= pivot) {
+//			end--;
+//		}
+//		swap(a + begin, a + end);
+//	}
+//	swap(a + end, a + right);
+//	return begin;
+//}
+
+//int partition2(int a[], int left, int right) {
+//	int begin = left;
+//	int end = right;
+//	int pivot = a[right];
+//	while (begin < end) {
+//		while (begin < end && a[begin] <= pivot) {
+//			begin++;
+//		}
+//
+//		a[end] = a[begin];
+//
+//		while (begin < end && a[end] >= pivot) {
+//			end--;
+//		}
+//
+//		a[begin] = a[end];
+//	}
+//
+//	a[begin] = pivot;
+//	return begin;
+//}
+//挖坑法
+//将最右边一个定位基准值，然后保存起来，将最后一直值想象为一个坑，开始记为begin，最右边记为end，
+//begin向右走，遇到比基准值大的，将begin的值赋给最后一个值，那么begin此时为坑，end 向左走，
+//遇到小于基准值的，将end值给坑，那么begin就接着走，直到begin和end 中的数为0；
+//int partition2(int* a, int left, int right) {
+//	int begin = left;
+//	int end = right;
+//	int pivot = a[right];
+//	while (begin < end) {
+//		while (begin < end && a[begin] <= pivot) {
+//			begin++;
+//		}
+//		a[end] = a[begin];
+//		while (begin < end && a[begin] <= pivot) {
+//			end--;
+//		}
+//		a[begin] = a[end];
+//	}
+//	a[begin] = pivot;
+//	return begin;
+//}
+
+int main() {
+	int a[] = { 1,9,2,8,3,7,4,6,5 };
+	int size = sizeof(a) / sizeof(int);
+	print(a, size);
+	selectsort(a, size);
+	heapSort(a, size);
+	shellSort(a, size);
+	selectSort(a, size);
+	print(a, size);
+	return 0;
+}
