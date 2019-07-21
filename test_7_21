@@ -1,0 +1,312 @@
+#include<stdio.h>
+#include<stdlib.h>
+//void print(int* a, int size) {
+//	for (int i = 0; i < size; i++) {
+//		printf("%d ", a[i]);
+//	}
+//	printf("\n");
+//
+//}
+//void swap(int* a, int* b) {
+//	int t = *a;
+//	*a = *b;
+//	*b = t;
+//}
+//int partition1(int* a, int left, int right) {
+//	int begin = left;
+//	int end = right;
+//	int pivot = a[right];
+//	while (begin < end) {
+//		while (begin < end && a[begin] <= pivot) {
+//			begin++;
+//		}
+//		while (begin < end && a[end] >= pivot) {
+//			end--;
+//		}
+//		swap(a + begin, a + end);
+//	}
+//	swap(a + end, a + right);
+//	return begin;
+//}
+//void quickSort1(int* a, int left,int right) {
+//	
+//	if (left >= right) {
+//		return;
+//	}
+//	int c = partition1(a, left, right);
+//	quickSort1(a, left, c - 1);
+//	quickSort1(a, c+1,right );
+//}
+//void quickSort(int* a, int size) {
+//	quickSort1(a, 0, size - 1);
+//}
+//
+//int main() {
+//	int a[] = { 3,8,4,5,7,9,6};
+//	int size = sizeof(a)/sizeof(int);
+//	
+//	quickSort(a,size);
+//	print(a, size);
+//	return 0;
+//}
+
+
+//int partition1(int a[], int left, int right) {
+//	int begin = left;
+//	int end = right;
+//	int pivot = a[right];
+//	while (begin < end) {
+//		while (begin < end && a[begin] <= pivot) {
+//			begin++;
+//		}
+//
+//		while (begin < end && a[end] >= pivot) {
+//			end--;
+//		}
+//
+//		swap(a + begin, a + end);
+//	}
+//	swap(a + begin, a + right);
+//	return begin;
+//}
+//void quickSortInternal(int a[], int left, int right) {
+//	if (left >= right) {
+//		// [left, right] 区间内只剩 1 或者 0 个数
+//		return;
+//	}
+//
+//	// 1. 确定基准值，最右边	a[right]
+//	// 2. 做 partition，小的左，大的右，返回基准值最终的下标
+//	int pivotIndex = partition1(a, left, right);
+//	// 3. 分治处理左右两个小区间
+//	quickSortInternal(a, left, pivotIndex - 1);
+//	quickSortInternal(a, pivotIndex + 1, right);
+//}
+//void quickSort(int* a, int size) {
+//	quickSortInternal(a, 0, size - 1);
+//}
+//
+//int main() {
+//	int a[] = { 3,8,4,5,7,6,9,12};
+//	int size = sizeof(a) / sizeof(int);
+//	quickSort(a, size);
+//	print(a, size);
+//	return 0;
+//}
+
+//快速排序
+//void print(int* a, int size) {
+//	for (int i = 0; i < size; i++) {
+//		printf("%d ", a[i]);
+//	}
+//	printf("\n");
+//}
+//void swap(int* a, int* b) {
+//	int t = *a;
+//	*a = *b;
+//	*b = t;
+//}
+//int partion(int* a, int left, int right) {
+//	int begin = left;
+//	int end = right;
+//	int pivot = a[right];
+//	while(begin < end) {
+//		while (begin < end && a[begin] <= pivot) {
+//			begin++;
+//		}
+//		while (begin < end && a[end] >= pivot) {
+//			end--;
+//		}
+//		swap(a + begin, a + end);
+//	}
+//	swap(a + begin, a + right);
+//	return begin;
+//}
+//
+//void quickSort1(int *a,int left,int right) {
+//	if (left >= right) {
+//		return;
+//	}
+//	int index = partion(a, left, right);
+//	quickSort1(a, left, index - 1);
+//	quickSort1(a, index + 1, right);
+//
+//}
+//
+//
+//void quickSort(int* a, int size) {
+//	quickSort1(a, 0, size - 1);
+//}
+//void  bubbleSort(int* a, int size) {
+//	for (int i = 0; i < size; i++) {
+//		for (int j = 0; j < size - i - 1; j++) {
+//			if (a[j] > a[j + 1]) {
+//				swap(a + j, a + j + 1);
+//			}
+//		}
+//	}
+//}
+//int main()
+//{
+//	int a[] = { 3,8,4,5,9,7,6 };
+//	int size = sizeof(a) / sizeof(int);
+//	bubbleSort(a, size);
+//	print(a, size);
+//	return 0;
+//}
+
+//void print(int* a, int size) {
+//
+//	for (int i = 0; i < size; i++) {
+//		printf("%d ", a[i]);
+//	}
+//	printf("\n");
+//
+//}
+//void swap(int* a, int* b) {
+//	int t = *a;
+//	*a = *b;
+//	*b = t;
+//}
+//int partition1(int* a, int left, int right) {
+//	int begin = left;
+//	int end = right;
+//	int pivot = a[right];
+//	while (begin < end) {
+//		while (begin < end && a[begin] <= pivot) {
+//			begin++;
+//		}
+//		while (begin < end && a[end] >= pivot) {
+//			end--;
+//		}
+//		swap(a + begin, a + end);
+//	}
+//	swap(a + end, a + right);
+//	return begin;
+//}
+//void quickSort1(int* a, int left,int right) {
+//	
+//	if (left >= right) {
+//		return;
+//	}
+//	int c = partition1(a, left, right);
+//	quickSort1(a, left, c - 1);
+//	quickSort1(a, c+1,right );
+//}
+//void quickSort(int* a, int size) {
+//	quickSort1(a, 0, size - 1);
+//}
+//
+//int main() {
+//	int a[] = { 3,8,4,5,7,9,6};
+//	int size = sizeof(a)/sizeof(int);
+//	
+//	quickSort(a,size);
+//	print(a, size);
+//	return 0;
+//}
+
+
+//int partition1(int a[], int left, int right) {
+//	int begin = left;
+//	int end = right;
+//	int pivot = a[right];
+//	while (begin < end) {
+//		while (begin < end && a[begin] <= pivot) {
+//			begin++;
+//		}
+//
+//		while (begin < end && a[end] >= pivot) {
+//			end--;
+//		}
+//
+//		swap(a + begin, a + end);
+//	}
+//	swap(a + begin, a + right);
+//	return begin;
+//}
+//void quickSortInternal(int a[], int left, int right) {
+//	if (left >= right) {
+//		// [left, right] 区间内只剩 1 或者 0 个数
+//		return;
+//	}
+//
+//	// 1. 确定基准值，最右边	a[right]
+//	// 2. 做 partition，小的左，大的右，返回基准值最终的下标
+//	int pivotIndex = partition1(a, left, right);
+//	// 3. 分治处理左右两个小区间
+//	quickSortInternal(a, left, pivotIndex - 1);
+//	quickSortInternal(a, pivotIndex + 1, right);
+//}
+//void quickSort(int* a, int size) {
+//	quickSortInternal(a, 0, size - 1);
+//}
+//
+//int main() {
+//	int a[] = { 3,8,4,5,7,6,9,12};
+//	int size = sizeof(a) / sizeof(int);
+//	quickSort(a, size);
+//	print(a, size);
+//	return 0;
+//}
+
+//快速排序
+//void print(int* a, int size) {
+//	for (int i = 0; i < size; i++) {
+//		printf("%d ", a[i]);
+//	}
+//	printf("\n");
+//}
+//void swap(int* a, int* b) {
+//	int t = *a;
+//	*a = *b;
+//	*b = t;
+//}
+//int partion(int* a, int left, int right) {
+//	int begin = left;
+//	int end = right;
+//	int pivot = a[right];
+//	while(begin < end) {
+//		while (begin < end && a[begin] <= pivot) {
+//			begin++;
+//		}
+//		while (begin < end && a[end] >= pivot) {
+//			end--;
+//		}
+//		swap(a + begin, a + end);
+//	}
+//	swap(a + begin, a + right);
+//	return begin;
+//}
+//
+//void quickSort1(int *a,int left,int right) {
+//	if (left >= right) {
+//		return;
+//	}
+//	int index = partion(a, left, right);
+//	quickSort1(a, left, index - 1);
+//	quickSort1(a, index + 1, right);
+//
+//}
+//
+//
+//void quickSort(int* a, int size) {
+//	quickSort1(a, 0, size - 1);
+//}
+//void  bubbleSort(int* a, int size) {
+//	for (int i = 0; i < size; i++) {
+//		for (int j = 0; j < size - i - 1; j++) {
+//			if (a[j] > a[j + 1]) {
+//				swap(a + j, a + j + 1);
+//			}
+//		}
+//	}
+//}
+//int main()
+//{
+//	int a[] = { 3,8,4,5,9,7,6 };
+//	int size = sizeof(a) / sizeof(int);
+//	bubbleSort(a, size);
+//	print(a, size);
+//	return 0;
+//}
