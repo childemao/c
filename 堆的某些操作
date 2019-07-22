@@ -1,0 +1,91 @@
+#include<stdio.h>
+void swap(int* a, int* b) {
+	int t = *a;
+	*a = *b;
+	*b = t;
+}
+//小堆
+void heapify(int* a, int size, int index)
+{
+	int left = 2 * index + 1;
+	int right = 2 * index + 2;
+	if (left >= size)
+		return;
+	int mix = left;
+	if (right < size && a[right] < a[mix])
+	{
+		mix = right;
+	}
+	if (a[index] <= a[mix])
+		return;
+	swap(&a[index], &a[mix]);
+	index = mix;
+	heapify(a, size, index);
+}
+void creatTree(int* a, int size)
+{
+	for (int i = (size - 2) / 2; i >= 0; i--)
+	{
+		heapify(a, size, i);
+	}
+}
+
+
+
+typedef struct heap {
+	int array[100];
+	int size;
+}heap;
+//小堆
+void adjustup(int* a, int size, int index) {
+	while (index)
+	{
+		if (index < 0)
+			return;
+		int parents = (index - 1) / 2;
+		if (a[parents] <= a[index])
+			return;
+		swap(&a[parents], &a[index]);
+		index = parents;
+	}
+}
+
+//初始化堆
+void heapInit(heap * heap, int* a, int size)
+{
+	for (int i = 0; i < size; i++) {
+		heap->array[i] = a[i];
+	}
+	heap->size = size;
+	creatTree(heap->array, heap->size);
+}
+void heapPush(heap * heap, int val) {
+	heap->array[heap->size++] = val;
+	//调整堆
+	adjustup(heap->array, heap->size, 0);
+}
+
+//获取堆顶元素
+int heapTop(heap * heap) {
+	assert(heap->size > 0);
+
+	return heap->array[0];
+}
+//删除堆顶元素
+void heapPop(heap * heap) {
+	assert(heap->size > 0);
+	heap->array[0] = heap->array[heap->size - 1];
+	heap->size--;
+	heapify(heap->array, heap->size, 0);
+}
+
+
+
+int main()
+{
+	int a[] = { 5,4,8,9,7,3,1,6,0,2 };
+	int size = sizeof(a) / sizeof(int);
+	creatTree(a, size);
+	printf("成功");
+	return 0;
+}
