@@ -1,0 +1,115 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+typedef struct Node {
+	char value;
+	struct Node* left;
+	struct Node* right;
+}Node;
+//遍历二叉树//前序遍历
+void Preorder(Node* root) {
+	if (root == NULL)
+		return;
+	printf("%c ", root->value);
+	Preorder(root->left);
+	Preorder(root->right);
+}
+//中序遍历
+void inorder(Node* root) {
+	if (root == NULL)
+		return;
+	inorder(root->left);
+	printf("%c ", root->value);
+	inorder(root->right);
+}
+//后序遍历
+void postorder(Node* root) {
+	if (root == NULL)
+		return;
+	postorder(root->left);
+	postorder(root->right);
+	printf("%c ", root->value);
+}
+//求二叉树结点个数
+int geNodeCount(Node* root) {
+	if (root == NULL)
+		return 0;
+	int left = geNodeCount(root->left);
+	int right = geNodeCount(root->right);
+
+	return 1 + left + right;
+}
+//求二叉树高度
+int compoterbig(int a, int b) {
+	return a > b ? a : b;
+}
+int getheight(Node* root) {
+	if (root == NULL)
+		return 1;
+	int left = getheight(root->left);
+	int right = getheight(root->right);
+	int c = compoterbig(left, right);
+	return c + 1;
+}
+//求二叉树叶子结点个数
+int leavfCount(Node* root) {
+	if (root == NULL) {
+		return 0;
+	}
+	else if (root->left == NULL && root->right == NULL) {
+		return 1;
+	}
+	else {
+		return leavfCount(root->left) + leavfCount(root->right);
+	}
+}
+//求第k层结点个数
+int getKleavfCount(Node* root,int k) {
+	if (root == NULL) {
+		return 0;
+	}
+	else if (k == 1)
+	{
+		return 1;
+	}
+	else {
+		return getKleavfCount(root->left,k-1) + getKleavfCount(root->right,k-1);
+	}
+}
+//创建二叉树
+Node* createNode(char ch) {
+	Node* node = (Node*)malloc(sizeof(Node));
+	node->value = ch;
+	node->left = node->right = NULL;
+	return node;
+}
+void test() {
+	Node* a = createNode('A');
+	Node* b = createNode('B');
+	Node* c = createNode('C');
+	Node* d = createNode('D');
+	Node* e = createNode('E');
+	Node* f = createNode('F');
+	Node* g = createNode('G');
+	Node* h = createNode('H');
+
+	a->left = b; a->right = c;
+	b->left = d; b->right = e;
+	c->left = f; c->right = g;
+	d->left = NULL; d->right = NULL;
+	e->left = NULL; e->right = h;
+	f->left = NULL; f->right = NULL;
+	//getKleavfCount(a, 30);
+	printf("%d ", getKleavfCount(a, 3));
+	printf("%d ", leavfCount(a));
+	printf("%d ", getheight(a));
+	printf("%d ", geNodeCount(a));
+	Preorder(a); printf("\n");
+	inorder(a); printf("\n");
+	postorder(a); printf("\n");
+
+}
+int main()
+{
+	test();
+}
