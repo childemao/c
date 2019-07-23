@@ -1,0 +1,193 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+
+#define DEFAULT_CAPACITY (16)
+//顺序表结构体
+typedef struct SeqList {
+	int* array;
+	int capacity;
+	int size;
+}SeqList;
+//扩容问题
+static void ensureCapacity(SeqList* seq) {
+	if (seq->size < seq->capacity) {//留一格，方便判断
+		return;//容量够用
+	}
+	int newCapacity = 2 * seq->capacity;
+	int* newArray = (int*)malloc(sizeof(int) * newCapacity);
+	if (newArray == NULL)
+		return;
+	for (int i = 0; i < seq->size; i++) {
+		newArray[i] = seq->array[i];
+	}
+	free(seq->array);
+	seq->array = newArray;
+}
+// 初始化
+void SeqListInit(SeqList* seq) {
+	seq->array = (int*)malloc(sizeof(int) * DEFAULT_CAPACITY);//申请空间
+	seq->capacity = DEFAULT_CAPACITY;//记录容积
+	seq->size = 0;
+}
+// 销毁
+void SeqListDestroy(SeqList* seq) {
+	free(seq->array);
+	seq->capacity = 0;
+	seq->size = 0;
+}
+// 头插
+//插到第一个，需腾出空间，在插入
+void SeqListPushFront(SeqList* seq, int val) {
+	for (int i = seq->size - 1; i >= 0; i--) {
+		seq->array[i + 1] = seq->array[i];
+	}
+	seq->array[0] = val;
+	seq->size++;
+	//SeqListInsert(seq, 0, val);
+}
+// 尾插
+void SeqListPushBack(SeqList* seq, int val) {
+  ensureCapacity(seq);
+	seq->array[seq->size] = val;
+	seq->size++;
+	//SeqListInsert(seq, seq->size, val);
+}
+
+//插入
+void SeqListInsert(SeqList* seq, int index, int val) {
+	if (index < 0 || index > seq->size) {
+		printf("下标不合格");
+			return;
+	}
+	ensureCapacity(seq);
+	for (int i = seq->size; i > index; i--) {
+		seq->array[i] = seq->array[i - 1];
+	}
+	seq->array[index] = val;
+	seq->size++;
+}
+//头删
+void SeqListPopFront(SeqList* seq) {
+	assert(seq->size > 0);
+	for (int i = 0; i <= seq->size-2; i++) {
+		seq->array[i] = seq->array[i+1];
+	}
+	seq->size--;
+}
+// 尾删
+void SeqListPopBack(SeqList* seq) {
+	assert(seq->size > 0);
+	seq->size--;
+}
+// 根据下标做删除
+void SeqListErase(SeqList* seq, int index) {
+	assert(seq->size > 0);
+	for (int i = index; i <= seq->size - 2; i++) {
+		seq->array[i] = seq->array[i + 1];
+	}
+	seq->size--;
+}
+// 查找
+int SeqListFind(SeqList* seq, int val) {
+	for (int i = 0; i < seq->size; i++) {
+		if (seq->array[i] == val)
+			return i;
+	}
+	return -1;//表示没找到
+}
+// 删除顺序表中第一个遇到的 val
+void SeqListReamove(SeqList* seq, int val) {
+	int index = SeqListFind(seq, val);
+	if (index != -1) {
+		SeqListErase(seq, index);
+	}
+}
+// 删除顺序表中的所有 val
+void SeqListRemoveAl1(SeqList* seq, int val) {
+	int index = -2;
+	while ((index = SeqListFind(seq, val)) != -1) {
+		SeqListErase(seq, index);
+	}
+}
+//方法二
+//以空间换时间
+void SeqListRemoveAl2(SeqList* seq, int val) {
+	int* extra = (int*)malloc(sizeof(int) * seq->size);
+	if (NULL == extra)
+		return;
+	int j = 0;
+	for (int i = 0; i < seq->size; i++) {
+		if (seq->array[i] != val)
+			extra[j++] = seq->array[i];
+	}
+	free(seq->array);
+	seq->array = extra;
+	seq->size = j;
+}
+//方法三
+void SeqListRemoveAl3(SeqList* seq, int val) {
+	int j = 0;
+	for (int i = 0; i < seq->size; i++) {
+		if (seq->array[i] != val) {
+			seq->array[j++] = seq->array[i];
+		}
+	}
+	seq->size = j;
+}
+void print(SeqList* seq) {
+	for (int i = 0; i < seq->size; i++) {
+		printf("%d ", seq->array[i]);
+	}
+	printf("\n");
+}
+void SeqListtest() {
+	SeqList seqlist;
+	SeqListInit(&seqlist);//初始化
+	SeqListPushBack(&seqlist, 1);
+	SeqListPushBack(&seqlist, 2);
+	SeqListPushBack(&seqlist, 3);
+	SeqListPushBack(&seqlist, 4);
+	SeqListPushBack(&seqlist, 5);
+	print(&seqlist);
+	SeqListPushFront(&seqlist, 6);
+	SeqListPushFront(&seqlist, 7);
+	SeqListPushFront(&seqlist, 8);
+	SeqListPushFront(&seqlist, 9);
+	print(&seqlist);
+	SeqListInsert(&seqlist, 5,0);
+	print(&seqlist);
+	SeqListPopFront(&seqlist);
+	SeqListPopFront(&seqlist);
+	print(&seqlist);
+	SeqListPopBack(&seqlist);
+	SeqListPopBack(&seqlist);
+	print(&seqlist);
+	SeqListErase(&seqlist, 2);
+	print(&seqlist);
+	int t = SeqListFind(&seqlist, 2);
+	printf("%d \n",t);
+	SeqListReamove(&seqlist, 6);
+	print(&seqlist);
+	SeqListPushBack(&seqlist, 1);
+	SeqListPushBack(&seqlist, 2);
+	SeqListPushBack(&seqlist, 3);
+	SeqListPushBack(&seqlist, 2);
+	SeqListPushBack(&seqlist, 2);
+	SeqListPushFront(&seqlist, 6);
+	SeqListPushFront(&seqlist, 2);
+	SeqListPushFront(&seqlist, 8);
+	print(&seqlist);
+	SeqListRemoveAl3(&seqlist,2);
+	print(&seqlist);
+	SeqListRemoveAl3(&seqlist, 3);
+	print(&seqlist);
+  SeqListDestroy(&seqlist);
+	printf("成功");
+
+}
+int main()
+{
+	SeqListtest();
+	return 0;
+}
