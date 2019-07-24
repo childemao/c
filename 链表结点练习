@@ -1,0 +1,125 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+//结点定义
+typedef struct Node {
+	int val;
+	struct Node* next;
+}Node;
+//头插
+Node* ListPushFront(Node* head, int val) {
+	Node* node = (Node*)malloc(sizeof(Node));
+	node->val = val;
+	node->next = head;
+	head = node;
+	return node;
+}
+//尾插
+Node* ListPushBack(Node* head, int val) {
+	Node* node= (Node*)malloc(sizeof(Node));
+	node->val = val;
+	node->next = NULL;
+	if (head != NULL) {
+		Node* cur = head;
+		while (cur->next != NULL) {
+			cur = cur->next;
+		}
+		cur->next = node;
+	}
+	else {
+		head = node;
+	}
+	return head;
+}
+//遍历链表
+void ListPrint(Node* head) {
+	for (Node* cur = head; cur != NULL; cur = cur->next) {
+		printf("%d-->", cur->val);
+	}
+	printf("NULL\n");
+}
+//头删 
+Node* ListPopFront(Node* head) {
+	assert(head != NULL);
+	Node* next = head->next;
+	free(head);
+	return next;
+}
+//尾删
+Node* ListPopBack(Node* head) {
+	assert(head != NULL);
+	if (head->next == NULL) {
+		free(head);
+		head = NULL;
+		}
+	else {
+		Node* cur = head;
+		while (cur->next->next != NULL) {
+			cur = cur->next;
+		}
+		free(cur->next);
+		cur->next = NULL;
+	}
+	return head;
+}
+
+////尾插
+//Node* ListPushBack(Node* head, int val) {
+//	Node* node = (Node*)malloc(sizeof(Node));
+//	node->val = val;
+//	node->next = NULL;
+//	if (head == NULL) {
+//		return node;
+//	}
+//	else {
+//		Node* last = head;
+//		while (last->next != NULL) {
+//			last = last->next;
+//		}
+//		last->next = node;
+//		return node;
+//	}
+//}
+void Test() {
+	Node* head = NULL;	// 链表的初始化
+
+	// 对链表做头插
+	ListPrint(head);
+	head = ListPushFront(head, 1);
+	ListPrint(head);
+	head = ListPushFront(head, 2);
+	ListPrint(head);
+	head = ListPushFront(head, 3);
+	ListPrint(head);
+	head = ListPushFront(head, 4);
+	ListPrint(head);
+	head = ListPushBack(head, 10);
+	head = ListPushBack(head, 20);
+	head = ListPushBack(head, 30);
+	ListPrint(head);
+
+
+	head = ListPopFront(head);
+	head = ListPopFront(head);
+	head = ListPopFront(head);
+	ListPrint(head);
+	head = ListPopBack(head);
+	head = ListPopBack(head);
+	head = ListPopBack(head);
+	head = ListPopBack(head);
+	ListPrint(head);
+
+	// 之前的结点内存泄漏了，没有释放
+	head = NULL;
+	head = ListPushBack(head, 10);
+	head = ListPushBack(head, 20);
+	ListPrint(head);
+	// head 不应该是 NULL 了
+	printf("你好世界\n");
+}
+
+int main() 
+{
+	Test();
+	return 0;
+}
