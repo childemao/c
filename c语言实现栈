@@ -1,0 +1,63 @@
+#include<assert.h>
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct Stack {
+	int array[100];
+	//int capacity;
+	int top;  //相当于size，可记录个数
+}Stack;
+//初始化
+void StackInit(Stack* s){
+	s->top = 0;
+}
+//压栈
+void StackPush(Stack* s, int val) {
+	s->array[s->top++] = val;
+}
+//出栈
+int StackPop(Stack* s) {
+	assert(s->top > 0);
+	return s->array[--s->top];
+}
+//返回栈顶元素
+int StackTop(Stack* s) {
+	assert(s->top > 0);
+	return s->array[s->top - 1];
+}
+//栈中元素个数
+int StackSize(Stack* s) {
+	return s->top;
+}
+//栈是否为空
+int StackIsEmpty(Stack* s) {
+	return s->top == 0 ? 1 : 0;
+}
+void print(Stack* s) {
+	for (int i = s->top-1; i >= 0; i--) {
+		printf("%d ", s->array[i]);
+	}
+}
+
+int main() {
+	Stack a;
+	StackInit(&a);//初始化
+	StackPush(&a, 1);
+	StackPush(&a, 2);
+	StackPush(&a, 3);
+	StackPush(&a, 4);
+	StackPush(&a, 5);
+	StackPush(&a, 6);
+	print(&a);
+	StackTop(&a);//返回栈顶元素
+	printf("%d ", StackTop(&a));
+	StackSize(&a);//栈内还剩余元素
+	printf("%d ", StackSize(&a));
+	int c = StackIsEmpty(&a);
+	if (c == 1) {
+		printf("栈内没有元素");
+	}
+	if (c == 0) {
+		printf("栈内还有元素");
+	}
+	return 0;
+}
