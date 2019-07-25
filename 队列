@@ -1,0 +1,68 @@
+#include<assert.h>
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct Node {
+	int val;
+	struct Node* next;
+}Node;
+typedef struct	Queue {
+	Node* front;
+	Node* rear;
+}Queue;
+void QueueInit(Queue* q) {
+	q->front = NULL;
+	q->rear = NULL;
+	/*q->front = q->rear = NULL;*/
+}
+
+//入队列，须符合先进先出原则，只能将入队列的元素放最后
+void QueuePush(Queue* q,int val) {
+	Node* node = (Node*)malloc(sizeof(Node));
+	node->val = val;
+	if (q->front == NULL) {
+		q->front = node;
+	}
+	else {
+		q->rear->next = node;
+	}
+	q->rear = node;
+}
+//出队列
+int QueuePop(Queue* q) {
+	assert(q->front != NULL);
+	Node* second = q->front->next;
+	int val = q->front->val;
+	free(q->front);
+	q->front = second;
+	if (q->front == NULL) {
+		q->rear = NULL;
+	}
+	return val;
+}
+//队列首元素
+int QueueFront(Queue* q) {
+	assert(q->front != NULL);
+	return q->front->val;
+}
+void test() {
+	Queue A;
+	QueueInit(&A);
+	QueuePush(&A, 1);
+	QueuePush(&A, 2);
+	QueuePush(&A, 3);
+	printf("%d ", A.front->val);
+	printf("%d ", A.front->next->val);
+	printf("%d ", A.front->next->next->val);
+	printf("%d \n",QueueFront(&A));
+	QueuePop(&A);
+	QueuePop(&A);
+	printf("%d ", A.front->val);
+	QueuePop(&A);
+	
+}
+
+int main() {
+	test();
+	printf("成功");
+	return 0;
+}
