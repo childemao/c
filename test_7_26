@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+typedef struct Node {
+	int val;
+	struct Node* next;
+}Node;
+typedef struct Queue {
+	Node* front;
+	Node* rear;
+}Queue;
+int length = 0;
+void QueueInit(Queue* q) {
+	q->front = q->rear = NULL;
+}
+void QueuePush(Queue* q, int val) {
+	Node* node = (Node*)malloc(sizeof(Node));
+	node->val = val;
+	if (q->front == NULL) {
+		q->front = node;
+	}
+	else {
+		q->rear->next = node;
+	}
+	q->rear = node;
+	length++;
+}
+int QueuePop(Queue* q) {
+	assert(q->front != NULL);
+	Node * second = q->front->next;
+	int val = q->front->val;
+	free(q->front);
+	q->front = second;
+	if (q->front == NULL) {
+		q->rear = NULL;
+	}
+	length--;
+	return val;
+}
+int QueueFront(Queue* q) {
+	assert(q->front != NULL);
+	return q->front->val;
+}
+int Queuerear(Queue * q) {
+	assert(q->front != NULL);
+	return q->rear->val;
+}
+	int sizeQueue(Queue * q) {
+		return length;
+	}
+	void isEmpty(Queue * q) {
+		if (q->front != NULL) {
+			printf("队列不为空");
+		}
+		else {
+			printf("队列为空");
+		}
+	}
+	void print(Queue * q)
+	{
+		for (Node* i = q->front; i != q->rear->next; i = i->next) {
+			printf("%d ", i->val);
+		}
+		printf("\n");
+	}
+	int main() {
+		Queue q;
+		QueueInit(&q);
+		QueuePush(&q, 1);
+		QueuePush(&q, 2);
+		QueuePush(&q, 3);
+		print(&q);
+		QueuePop(&q);
+		print(&q);
+		int a = QueueFront(&q);
+		printf("%d \n", a);
+		a = Queuerear(&q);
+		printf("%d \n", a);
+		a = sizeQueue(&q);
+		printf("%d \n", a);
+		isEmpty(&q);
+		return 0;
+	}
