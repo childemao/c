@@ -1,0 +1,157 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct ListNode
+{
+	int val;
+	struct ListNode* next;
+}Node;
+//反转链表
+Node* reverseList(Node* head) {
+	Node* rHead = NULL;
+	Node* cur = head;
+	while (cur != NULL) {
+		Node* next = cur->next;
+		cur->next = rHead;// 头插，结点的next是rhead；
+		rHead = cur;
+		cur = next;
+	}
+	return rHead;
+}
+//删除链表中相同的值，用双指针，val相同，就跳过此元素，最后判断首元素
+Node* removeElements_1(Node* head, int val) {
+	if (head == NULL)
+		return NULL;
+	Node * prev = head;
+	Node * cur = head->next;
+	while (cur != NULL) {
+		if (cur->val == val) {
+			prev->next = cur->next;
+		}
+		else {
+			prev = cur;
+		}
+		cur = cur->next;
+	}
+	if (head->val == val) {
+		return head->next;
+	}
+	else {
+		return head;
+	}
+}
+// 删除链表中所有的 val
+// 遇到不等于 val 的，就尾插到另一个链表中
+Node* removeElements_2(Node* head, int val) {
+	Node* rhead = NULL;
+	Node* cur = head;
+	Node* last = NULL;//记录rhead的最后一个结点
+	while (cur != NULL) {
+		Node* next = cur->next;
+		if (cur->val != val) {
+			if (rhead == NULL) {
+				cur->next = rhead;
+				rhead = cur;
+			}
+			else {
+				cur->next = NULL;
+				last->next = cur;
+			}
+			last = cur;
+		}
+		cur = next;
+	}
+	return rhead;
+}
+// 合并有序链表
+Node* twolist(Node* head1, Node* head2) {
+	if (head1 == NULL) {
+		return head2;
+	}
+	if (head2 == NULL) {
+		return head1;
+	}
+	Node* rhead = NULL;
+	Node* last = NULL;// 记录rhead最后结点位置
+	Node* c1 = head1;
+	Node* c2 = head2;
+	while (c1 != NULL && c2 != NULL) {
+		if (c1->val <= c2->val) {
+			Node* next = c1->next;
+			c1->next = NULL;
+			if (c1 == NULL) {
+				rhead = c1;
+			}
+			else {
+				last->next = c1;
+			}
+			last = c1;
+			c1 = next;
+		}
+		else {
+			Node* next = c2->next;
+			c2->next = NULL;
+			if (rhead == NULL) {
+				c2->next = rhead;
+				rhead = c2;
+			}
+			else {
+				last->next = c2;
+			}
+			last = c2;
+			c2 = next;
+		}
+	}
+	//可能还有没有遍历完的链表
+	if (c1 != NULL) {
+		last->next = c2;
+	}
+	else {
+		last->next = c1;
+	}
+	return rhead;
+}
+Node* creatNode() {
+	Node* n1 = (Node*)malloc(sizeof(Node));
+	n1->val = 1;
+	Node* n2 = (Node*)malloc(sizeof(Node));
+	n2->val = 2; 
+	Node* n3 = (Node*)malloc(sizeof(Node));
+	n3->val = 3;
+	Node* n4 = (Node*)malloc(sizeof(Node));
+	n4->val = 4;
+	Node* n5 = (Node*)malloc(sizeof(Node));
+	n5->val = 5;
+	Node* n6 = (Node*)malloc(sizeof(Node));
+	n6->val = 6;
+	Node* n7 = (Node*)malloc(sizeof(Node));
+	n7->val = 7;
+	Node* n8 = (Node*)malloc(sizeof(Node));
+	n8->val = 8;
+	Node* n9 = (Node*)malloc(sizeof(Node));
+	n9->val = 9;
+	n1->next = n2;
+	n2->next = n3;
+	n3->next = n4;
+	n4->next = n5;
+	n5->next = n6;
+	n6->next = n7;
+	n7->next = n8;
+	n8->next = n9;
+	n9->next = NULL;
+	return n1;
+}
+void print(Node* head) {
+	for (Node* cur = head; cur != NULL; cur = cur->next) {
+		printf("%d--> ", cur->val);
+	}
+	printf("\n");
+}
+int main() 
+{
+	Node* head = creatNode();
+	print(head);
+	head = reverseList(head);
+	print(head);
+	return 0;
+}
