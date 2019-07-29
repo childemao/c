@@ -1,0 +1,86 @@
+#include<iostream>
+using namespace std;
+class Date
+{
+public:
+	friend ostream& operator<<(ostream& _cout, const Date& d);
+	Date(int year = 2019, int month = 7, int day = 29)
+		//初始化
+		:_year(year)
+		,_month(month)
+		,_day(day)
+	{
+		//_year = year;
+		//_month = month;
+		//_day = day;
+		cout << this << '- ' << endl;
+	}
+	//拷贝构造函数
+	Date(const Date& d)
+	{
+		_year = d._year;
+		_month = d._month;
+		_day = d._day;
+	}
+	//赋值运算符
+	Date& operator=(const Date& d)
+	{
+		if (this != &d)
+		{
+			_year = d._year;
+			_month = d._month;
+			_day = d._day;
+		}
+		return *this;
+	}
+	//等于运算符
+	bool operator==(const Date& d)
+	{
+		return _year == d._year &&
+			_month == d._month &&
+			_day == d._day;
+	}
+	//不等运算符
+	bool operator!=(const Date& d)
+	{
+		return !(*this == d);
+	}
+	//前置++
+	Date& operator++()
+	{
+		_day += 1;
+		return *this;
+	}
+	//后置++
+	Date operator++(int)
+	{
+		Date temp(*this);//Date* temp = this;
+		_day += 1;
+		return temp;
+	}
+	//加法运算符
+	Date operator+(int days)
+	{
+		Date temp(*this);
+		temp._day += days;
+		return temp;
+	}
+private:
+	int _year;
+	int _month;
+	int _day;
+};
+
+//友元函数，可访问类内私有部分
+ostream& operator<<(ostream& _cout, const Date& d) 
+{ 
+	_cout << d._year << "-" << d._month << "-" << d._day;   
+	return _cout; 
+}
+
+int main()
+{
+	Date d;
+	cout << d << endl;
+	return 0;
+}
