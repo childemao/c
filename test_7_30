@@ -65,10 +65,10 @@ using namespace std;
 
 //class A
 //{
-//	char a;
+//	char a;//1+7
 //	double b;//8
-//	char c;
-//	float d;
+//	char c;//1+3
+//	float d;//4
 //};
 //int main()
 //{
@@ -76,18 +76,6 @@ using namespace std;
 //	return 0;
 //}
 
-//struct A
-//{
-//	char a;
-//	double b;
-//	char c;
-//	float d;
-//};
-//int main()
-//{
-//	cout << sizeof(A) << endl;//24
-//	return 0;
-//}
 
 class A
 {
@@ -98,10 +86,10 @@ public:
 		double d;//8
 	};
 private:
-	char a;//1+3
+	char a;//1+7
 	double b;//8
 	char c;//1+3
-	float d;// 4+4
+	float d;// 4
 };
 int main()
 {
