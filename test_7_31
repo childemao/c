@@ -1,0 +1,128 @@
+#include<iostream>
+using namespace std;
+
+//int main()
+//{
+//	cout << sizeof(int*) << endl;
+//	return 0;
+//}
+
+
+
+
+//struct Student
+//{
+//	void SetStudentInfo(const char* name, const char* gender, int age)
+//	{
+//		strcpy(_name, name);
+//		strcpy(_gender, gender);
+//		_age = age;
+//	}
+//	
+//	char _name[20];
+//	char _gender[3];
+//	int _age;
+//};
+//int main()
+//{
+//	Student s;
+//	s.SetStudentInfo("Peter", "男", 18);
+//	return 0
+//}
+//
+//class X
+//{
+////};
+
+
+//class Date
+//{
+//public:
+//	void Display() {
+//		cout << _year << "-" << _month << "-" << _day << endl;
+//	}
+//	void SetDate(int year, int month, int day) { 
+//		_year = year;      
+//		_month = month;      
+//		_day = day;
+//	}
+//private:
+//	int _year;
+//	int _month;
+//	int _day;
+//};
+//int main() 
+//{ 
+//	Date d1, d2;  
+//	d1.SetDate(2019, 7, 31);   
+//	d2.SetDate(2019, 1, 1);  
+//	d1.Display();  
+//	d2.Display();   
+//	return 0;
+//}
+
+
+
+//template<typename T>
+//T add(T left, T right)
+//{
+//	return left + right;
+//}
+//int main() 
+//{
+//	int a = add(1, 2);
+//	cout << a << endl;
+//
+//	int b = add(1.0, 2.0);
+//	cout << b << endl;
+//	return 0;
+//}
+
+
+class Date
+{
+	Date(int year,int month,int day)
+		:_year(year)
+		,_month(month)
+		,_day(day)
+	{
+		cout << "Date" << this << endl;
+	}
+	//拷贝构造函数
+	Date(const Date& d)
+	{
+		_year = d._year;
+		_month = d._month;
+		_day = d._day;
+	}
+	Date& operator=(const Date& d)
+	{
+		if (this != &d)
+		{
+			_year = d._year;
+			_month = d._month;
+			_day = d._day;
+		}
+		return *this;
+	}
+	bool operator==(const Date& d)
+	{
+		return _year == d._year &&
+			_month == d._month &&
+			_day == d._day;
+	}
+	bool operator!=(const Date& d)
+	{
+		return !(*this == d);
+	}
+	Date operator+(int days)
+	{
+		Date temp(*this);
+		temp._day += days;
+		return temp;
+	}
+private:
+	int _year;
+	int _month;
+	int _day;
+};
