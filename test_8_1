@@ -1,0 +1,110 @@
+#include<assert.h>
+#include<iostream>
+using namespace std;
+
+
+template<class T>
+class SeqList
+{
+public:
+	SeqList(size_t capacity = 10)
+		: _array(new T[capacity])
+		, _capacity(capacity)
+		, _size(0)
+	{}
+	~SeqList()
+	{
+		if (_array)
+		{
+			delete[] _array;
+			_array = nullptr;
+			_capacity = 0;
+			_size = 0;
+		}
+	}
+
+	void PushBack(const T & data);
+	void PopBack();
+
+	size_t Size()const
+	{
+		return _size;
+	}
+
+	size_t Capacity()const
+	{
+		return _capacity;
+	}
+
+	bool Empty()const
+	{
+		return 0 == _size;
+	}
+
+	//T& operator[](size_t index)
+	//{
+	//	assert(index < _size);
+	//	return _array[index];
+	//}
+
+	const T& operator[](size_t index)const
+	{
+		assert(index < _size);
+		return _array[index];
+	}
+
+	void PrintSeqList()
+	{
+		for (size_t i = 0; i < _size; ++i)
+		{
+			cout << _array[i] << " ";
+		}
+		cout << endl;
+	}
+
+private:
+	T* _array;
+	size_t _capacity;
+	size_t _size;
+};
+
+
+template<class T>
+void SeqList<T>::PushBack(const T& data)
+{
+	// _CheckCapacity();
+	_array[_size++] = data;
+}
+
+template<class T>
+void SeqList<T>::PopBack()
+{
+	if (0 == _size)
+		return;
+
+	--_size;
+}
+
+
+int main()
+{
+	SeqList<int> s1;
+	s1.PushBack(0);
+	s1.PushBack(1);
+	s1.PushBack(2);
+	s1.PushBack(3);
+	s1.PushBack(4);
+
+	s1.PrintSeqList();
+	cout << s1.Size() << endl;
+	cout << s1.Capacity() << endl;
+	cout << s1[3] << endl;
+
+	SeqList<double> s2;
+	s2.PushBack(1.0);
+	s2.PushBack(2.0);
+	s2.PushBack(3.0);
+	s2.PushBack(4.0);
+	s1.PrintSeqList();
+	return 0;
+}
