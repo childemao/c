@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int count_one_bits(unsigned int value)
+{
+	int count = 0;
+	int a = 1;
+	int j = 32;
+	while (j)
+	{
+		if ((value & a) == 1)
+		{
+			count++;
+		}
+		a=a << 1;
+		j--;
+	}
+	return count;
+}
+
+int main()
+{
+	int num = -1;
+	int ret = count_one_bits(num);
+	printf("ret=%d", ret);
+	system("pause");
+	return 0;
+}
