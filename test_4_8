@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<stdlib.h>
+void print(int* a, int size) {
+	for (int i = 0; i < size; i++) {
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+
+}
+void swap(int* a, int* b) {
+	int t = *a;
+	*a = *b;
+	*b = t;
+}
+//挖坑法
+//将最右边一个定位基准值，然后保存起来，将最后一直值想象为一个坑，开始记为begin，最右边记为end，
+//begin向右走，遇到比基准值大的，将begin的值赋给最后一个值，那么begin此时为坑，end 向左走，
+//遇到小于基准值的，将end值给坑，那么begin就接着走，直到begin和end 中的数为0；
+int partition2(int* a, int left, int right) {
+	int begin = left;
+	int end = right;
+	int pivot = a[right];
+	while (begin < end) {
+		while (begin < end && a[begin] <= pivot) {
+			begin++;
+		}
+		a[end] = a[begin];
+		while (begin < end && a[begin] <= pivot) {
+			end--;
+		}
+		a[begin] = a[end];
+	}
+	a[begin] = pivot;
+	return begin;
+}
+int partition1(int* a, int left, int right) {
+	int begin = left;
+	int end = right;
+	int pivot = a[right];
+	while (begin < end) {
+		while (begin < end && a[begin] <= pivot) {
+			begin++;
+		}
+		while (begin < end && a[end] >= pivot) {
+			end--;
+		}
+		swap(a + begin, a + end);
+	}
+	swap(a + end, a + right);
+	return begin;
+}
+//快速排序，1.确定一个基准值，
+//2.比基准值小的放左边，比基准值大的放右边
+//3.按照分治思想，将基准值左边的如同上面的方法，确定基准值，然后比较，直到两个相邻基准值中的数等于1
+//或没有，将右边也同样处理
+void quickSort1(int* a, int left,int right) {
+	
+	if (left >= right) {
+		return;
+	}
+	int c = partition2(a, left, right);
+	quickSort1(a, left, c - 1);
+	quickSort1(a, c+1,right );
+}
+void QuickSort(int* a, int size) {
+	quickSort1(a, 0, size - 1);
+}
+
+int main() {
+	int a[] = { 3,8,4,5,7,9,6};
+	int size = sizeof(a)/sizeof(int);
+	QuickSort(a,size);
+	print(a, size);
+	return 0;
+}
